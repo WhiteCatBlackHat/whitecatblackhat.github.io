@@ -1,0 +1,28 @@
+@charset "utf-8";   /*注意"utf-8"匹配html文件的字符编码*/
+
+*   /* *(通配符)应用于页面上的所有元素 */
+{
+    margin: 0;  /*指定默认页边距为0*/
+    font-family: sans-serif;    /*设置所有文本的字体系列*/
+}
+h1  /*h1选择器*/
+{
+    font-size: 8em;    /*把标题的字号设置为基本字号的8倍
+    1em=100%的基本字号，em是西文排版行长单位*/
+    color: #DDF;    /*字体使用DDF的RGB16进制代码设置为淡蓝色*/
+}
+p
+{
+    position: absolute;
+    top: 2.5em;
+    left: 1.5em;
+    /*前面三个属性可以把段落定位在标题顶部*/
+    font-size: 2em;
+    font-weight: bold;  /*字体粗细设置为黑体，确保它可以在淡色的标题上被读出来*/
+    color: #338;    /*文本颜色用RGB#338设置为深蓝色*/
+}
+#output /*#output选择器应用于ID为output的元素*/
+{
+    font-style: italic; /*把字体样式改为斜体*/
+    color: #C33;    /*文本颜色用RGB#C33改为红色*/
+}
