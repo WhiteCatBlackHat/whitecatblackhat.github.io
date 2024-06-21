@@ -2,9 +2,7 @@
 <html>  <!--整个页面都位于html元素中-->
     <head>  <!--head元素可以包含各种子元素，用于传递文档的信息，但一般不显示为文档内容-->
         <meta http-equiv="content-type" content="text/html;charset=utf-8">
-        <title> <!--标题Date & Time-->
-            Date &amp; Time
-        </title>
+        <title>Date &amp; Time</title>  <!--标题Date & Time-->
         <script type="text/javascript" src="date-time.js"></script> <!--样式表文档后缀名为.css-->
         <link type="text/css" rel="stylesheet" href="date-time.css">    <!--运行JavaScript脚本-->
     </head>
@@ -13,12 +11,9 @@
         文档页面通常只有一个h1来重申页面标题-->
         <p>
             It is currently 
-            <span id="output">
-                now
-                <!--这是JavaScript要在其中插入当前日期和时间的文本段，
-                JavaScript使用span元素的ID属性(output)来定位，
-                这样脚本就能用实际的日期和时间来代替span的内容(now)-->
-            </span>
+            <span id="output">now</span><!--这是JavaScript要在其中插入当前日期和时间的文本段，
+            JavaScript使用span元素的ID属性(output)来定位，
+            这样脚本就能用实际的日期和时间来代替span的内容(now)-->
             .
         </p>
     </body>
