@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <title>Button Click Counter</title>
+        <script>
+            // 初始化点击次数为0
+            let clickCount = 0;
+
+            // 定义一个函数，用于更新点击次数并显示
+            function updateClickCount()
+            {
+                clickCount++;
+                document.getElementById('clickCount').textContent = 'You have clicked the button ' + clickCount + ' times.';
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="updateClickCount()">Click me</button>
+        <!-- 显示点击次数的元素 -->
+        <p id="clickCount">You have clicked the button 0 times.</p>
+    </body>
+</html>
