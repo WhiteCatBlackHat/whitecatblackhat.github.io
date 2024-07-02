@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--DOCTYPE告诉浏览器如何显示文档-->
+<html>
+    <!--整个页面都位于html元素中-->
+    <head>
+        <!--head元素可以包含各种子元素，用于传递文档的信息，但一般不显示为文档内容-->
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <title>Date &amp; Time (2)</title>
+        <!--标题Date & Time-->
+        <script type="text/javascript" src="date-time(2).js"></script>
+        <!--样式表文档后缀名为.css-->
+        <link type="text/css" rel="stylesheet" href="date-time(2).css">
+        <!--运行JavaScript脚本-->
+    </head>
+    <body>  <!--body元素包含文档的内容——结构、文本、图像、多媒体对象等等-->
+        <h1>Date &amp; Time</h1>
+        <!--使用标题标记(h1~h6)创建文档中的大钢结构
+        文档页面通常只有一个h1来重申页面标题-->
+        <p id="paragraph">
+            It is currently 
+            <span id="output">now</span>
+            <!--这是JavaScript要在其中插入当前日期和时间的文本段，
+            JavaScript使用span元素的ID属性(output)来定位，
+            这样脚本就能用实际的日期和时间来代替span的内容(now)-->
+            .
+        </p>
+    </body>
+</html>

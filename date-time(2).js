@@ -1,5 +1,3 @@
-//触发事件
-window.onload = insertDateTime;
 function insertDateTime()
 {
     //确保一个安全的环境
@@ -14,14 +12,11 @@ function insertDateTime()
     //确定目标（指向目标span元素）
     var oTarget = document.getElementById('output');
     if(!oTarget)    return;
-
-    //删除原来的内容（该元素中已有的内容）
-    while(oTarget.firstChild)
-    {
-        oTarget.removeChild(oTarget.firstChild);
-    }
-
-    //插入日期和时间（在元素中插入新文本）
-    var oNewText = document.createTextNode(beijingTime);
-    oTarget.appendChild(oNewText);
+    
+    //显示日期和时间
+    oTarget.textContent = beijingTime;
 }
+
+insertDateTime();
+
+setInterval(insertDateTime, 1000);  //每秒更新一次
