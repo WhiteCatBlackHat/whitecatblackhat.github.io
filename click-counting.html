@@ -4,10 +4,10 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8">
         <title>Button Click Counter</title>
         <script>
-            // ³õÊ¼»¯µã»÷´ÎÊıÎª0
-            let clickCount = 0;
+            // åˆå§‹åŒ–ç‚¹å‡»æ¬¡æ•°ä¸º0
+            var clickCount = 0;
 
-            // ¶¨ÒåÒ»¸öº¯Êı£¬ÓÃÓÚ¸üĞÂµã»÷´ÎÊı²¢ÏÔÊ¾
+            // å®šä¹‰ä¸€ä¸ªå‡½æ•°ï¼Œç”¨äºæ›´æ–°ç‚¹å‡»æ¬¡æ•°å¹¶æ˜¾ç¤º
             function updateClickCount()
             {
                 clickCount++;
@@ -17,7 +17,7 @@
     </head>
     <body>
         <button onclick="updateClickCount()">Click me</button>
-        <!-- ÏÔÊ¾µã»÷´ÎÊıµÄÔªËØ -->
-        <p id="clickCount">You have clicked the button 0 times.</p>
+        <!-- æ˜¾ç¤ºç‚¹å‡»æ¬¡æ•°çš„å…ƒç´  -->
+        <p id="clickCount">You have clicked the button 0 time(s).</p>
     </body>
 </html>
