@@ -1,6 +1,6 @@
 function plus1()
 {
-    var sPoints = document.getElementById('points');
     game.points++;
+    var sPoints = document.getElementById('points');
     sPoints.textContent = game.points;
 }
