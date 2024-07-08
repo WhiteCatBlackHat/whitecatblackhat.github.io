@@ -1,6 +1,6 @@
-function plus1()
+function plus1()    //+1点数
 {
-    game.points++;
-    var sPoints = document.getElementById('points');
-    sPoints.textContent = game.points;
+    game.number[0] += 1;
+    //game.number[0] *= 2;
+    //optPoints();
 }
