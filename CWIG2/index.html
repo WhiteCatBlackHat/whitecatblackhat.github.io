@@ -9,6 +9,7 @@
         <script type="text/javascript" src="outputs.js"></script>
         <script type="text/javascript" src="generators.js"></script>
         <script type="text/javascript" src="factors.js"></script>
+        <script type="text/javascript" src="UI.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -19,48 +20,56 @@
             <span id="points">0</span>
              点数.
         </p>
-        <button id="plus1">+1点数</button> <button id="maxAll">全部购买最大</button>
-        <p>
-            一阶生成器 <button id="buyG1" disabled=true onclick="buyGener(1)">购买</button>  (价格: <span id="priG1"></span>  数量: <span id="numG1"></span>  倍率: <span id="facG1"></span>)
-        </p>
-        <p>
-            二阶生成器 <button id="buyG2" disabled=true onclick="buyGener(2)">购买</button>  (价格: <span id="priG2"></span>  数量: <span id="numG2"></span>  倍率: <span id="facG2"></span>)
-        </p>
-        <p>
-            三阶生成器 <button id="buyG3" disabled=true onclick="buyGener(3)">购买</button>  (价格: <span id="priG3"></span>  数量: <span id="numG3"></span>  倍率: <span id="facG3"></span>)
-        </p>
-        <p>
-            四阶生成器 <button id="buyG4" disabled=true onclick="buyGener(4)">购买</button>  (价格: <span id="priG4"></span>  数量: <span id="numG4"></span>  倍率: <span id="facG4"></span>)
-        </p>
-        <p>
-            五阶生成器 <button id="buyG5" disabled=true onclick="buyGener(5)">购买</button>  (价格: <span id="priG5"></span>  数量: <span id="numG5"></span>  倍率: <span id="facG5"></span>)
-        </p>
-        <p>
-            六阶生成器 <button id="buyG6" disabled=true onclick="buyGener(6)">购买</button>  (价格: <span id="priG6"></span>  数量: <span id="numG6"></span>  倍率: <span id="facG6"></span>)
-        </p>
-        <p>
-            七阶生成器 <button id="buyG7" disabled=true onclick="buyGener(7)">购买</button>  (价格: <span id="priG7"></span>  数量: <span id="numG7"></span>  倍率: <span id="facG7"></span>)
-        </p>
-        <p>
-            八阶生成器 <button id="buyG8" disabled=true onclick="buyGener(8)">购买</button>  (价格: <span id="priG8"></span>  数量: <span id="numG8"></span>  倍率: <span id="facG8"></span>)
-        </p>
-        <br/>
-        <button id="save">存档</button> <button id="load">读档</button>
+        <button id="showGeners">生成器</button> <button id="showOthers">杂项</button>
         <br/>
         <br/>
-        <p>
-            更新历程:<br/>
-            2024.07.08 v2.2 更新了UI<br/>
-            2024.07.08 v2.1 增加了全部购买最大按钮<br/>
-            2024.07.06 v2.0 增加了一到八阶生成器<br/>
-            2024.07.06 v1.3 更新了UI<br/>
-            2024.07.06 v1.2 增加了用科学计数法显示数字<br/>
-            2024.07.06 v1.1 修复了数字超过1e20时无法从存档中读取的问题<br/>
-            2024.07.03 v1.0 增加了存读档和重置<br/>
-            2024.07.03 v0.1 增加了"更新历程"<br/>
-            2024.07.03 v0.0 增加了点数
-        </p>
-        <br/>
-        <button id="softReset">软重置(不重置存档)</button> <button id="hardReset">硬重置(重置一切,慎用!!!)</button>
+        <span id="geners">
+            <button id="plus1">+1点数</button> <button id="maxAll">全部购买最大</button>
+            <p>
+                一阶生成器 <button id="buyG1" disabled=true onclick="buyGener(1)">购买</button>  (价格: <span id="priG1"></span>  数量: <span id="numG1"></span>  倍率: <span id="facG1"></span>)
+            </p>
+            <p>
+                二阶生成器 <button id="buyG2" disabled=true onclick="buyGener(2)">购买</button>  (价格: <span id="priG2"></span>  数量: <span id="numG2"></span>  倍率: <span id="facG2"></span>)
+            </p>
+            <p>
+                三阶生成器 <button id="buyG3" disabled=true onclick="buyGener(3)">购买</button>  (价格: <span id="priG3"></span>  数量: <span id="numG3"></span>  倍率: <span id="facG3"></span>)
+            </p>
+            <p>
+                四阶生成器 <button id="buyG4" disabled=true onclick="buyGener(4)">购买</button>  (价格: <span id="priG4"></span>  数量: <span id="numG4"></span>  倍率: <span id="facG4"></span>)
+            </p>
+            <p>
+                五阶生成器 <button id="buyG5" disabled=true onclick="buyGener(5)">购买</button>  (价格: <span id="priG5"></span>  数量: <span id="numG5"></span>  倍率: <span id="facG5"></span>)
+            </p>
+            <p>
+                六阶生成器 <button id="buyG6" disabled=true onclick="buyGener(6)">购买</button>  (价格: <span id="priG6"></span>  数量: <span id="numG6"></span>  倍率: <span id="facG6"></span>)
+            </p>
+            <p>
+                七阶生成器 <button id="buyG7" disabled=true onclick="buyGener(7)">购买</button>  (价格: <span id="priG7"></span>  数量: <span id="numG7"></span>  倍率: <span id="facG7"></span>)
+            </p>
+            <p>
+                八阶生成器 <button id="buyG8" disabled=true onclick="buyGener(8)">购买</button>  (价格: <span id="priG8"></span>  数量: <span id="numG8"></span>  倍率: <span id="facG8"></span>)
+            </p>
+        </span>
+        <span id="others">
+            <button id="save">存档</button> <button id="load">读档</button> (每10秒自动保存)
+            <br/>
+            <br/>
+            <p>
+                更新历程:<br/>
+                2024.07.08 v2.4 增加了自动保存<br/>
+                2024.07.08 v2.3 更新了UI<br/>
+                2024.07.08 v2.2 更新了UI<br/>
+                2024.07.08 v2.1 增加了全部购买最大按钮<br/>
+                2024.07.06 v2.0 增加了一到八阶生成器<br/>
+                2024.07.06 v1.3 更新了UI<br/>
+                2024.07.06 v1.2 增加了用科学计数法显示数字<br/>
+                2024.07.06 v1.1 修复了数字超过1e20时无法从存档中读取的问题<br/>
+                2024.07.03 v1.0 增加了存读档和重置<br/>
+                2024.07.03 v0.1 增加了"更新历程"<br/>
+                2024.07.03 v0.0 增加了点数
+            </p>
+            <br/>
+            <button id="softReset">软重置(不重置存档)</button> <button id="hardReset">硬重置(重置一切,慎用!!!)</button>
+        </span>
     </body>
 </html>
