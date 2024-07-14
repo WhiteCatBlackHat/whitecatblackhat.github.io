@@ -1,8 +1,22 @@
-function calcFac1()
+function NGFac(num)
 {
-    if(isNaN(game.number[0]) || game.number[0]<1)
+    if(num <= 1)
     {
-        return 1;
+        var nanFac = game.normal.speedUpFac * (game.infinity.times + 1);
+        if(isNaN(game.normal.number[0]) || game.normal.number[0] < 1)
+        {
+            return nanFac;
+        }
+        return Math.max( 1.0 , Math.log10( game.normal.number[0] + 1 ) ) * nanFac;
     }
-    return Math.max( 1.0 , Math.log10( game.number[0] + 1 ) );
+    var fac1 = NGFac(1);
+    if(isNaN(game.normal.number[num - 1]) || game.normal.number[num - 1] < 1)
+    {
+        return fac1;
+    }
+    return fac1 * Math.max( 1.0 , Math.log10( game.normal.number[num - 1] + 1 ) )
+}
+function SUFac()
+{
+    return Math.max( 1.0 , Math.log10( game.normal.number[0] + 1 ) );
 }

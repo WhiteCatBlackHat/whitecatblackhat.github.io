@@ -10,6 +10,10 @@
         <script type="text/javascript" src="generators.js"></script>
         <script type="text/javascript" src="factors.js"></script>
         <script type="text/javascript" src="UI.js"></script>
+        <script type="text/javascript" src="infinity.js"></script>
+        <script type="text/javascript" src="speed_up.js"></script>
+        <link type="text/css" rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src="infinity_upgrades.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -20,42 +24,105 @@
             <span id="points">0</span>
              点数.
         </p>
-        <button id="showGeners">生成器</button> <button id="showOthers">杂项</button>
+        <p>
+            你有 
+            <span id="infPoints">0</span>
+             无限点数.
+        </p>
+        <button id="showNormalGeners">普通生成器</button> <button id="showIU">无限升级</button> <button id="showOthers">杂项</button>
         <br/>
         <br/>
-        <span id="geners">
+        <span id="normalGeners">
             <button id="plus1">+1点数</button> <button id="maxAll">全部购买最大</button>
             <p>
-                一阶生成器 <button id="buyG1" disabled=true onclick="buyGener(1)">购买</button>  (价格: <span id="priG1"></span>  数量: <span id="numG1"></span>  倍率: <span id="facG1"></span>)
+                一阶生成器 <button id="buyG1" disabled=true onclick="buyGener(1)">购买</button>  (价格: <span id="priG1"></span> 点数  数量: <span id="numG1"></span>  倍率: <span id="facG1"></span>)
             </p>
             <p>
-                二阶生成器 <button id="buyG2" disabled=true onclick="buyGener(2)">购买</button>  (价格: <span id="priG2"></span>  数量: <span id="numG2"></span>  倍率: <span id="facG2"></span>)
+                二阶生成器 <button id="buyG2" disabled=true onclick="buyGener(2)">购买</button>  (价格: <span id="priG2"></span> 点数  数量: <span id="numG2"></span>  倍率: <span id="facG2"></span>)
             </p>
             <p>
-                三阶生成器 <button id="buyG3" disabled=true onclick="buyGener(3)">购买</button>  (价格: <span id="priG3"></span>  数量: <span id="numG3"></span>  倍率: <span id="facG3"></span>)
+                三阶生成器 <button id="buyG3" disabled=true onclick="buyGener(3)">购买</button>  (价格: <span id="priG3"></span> 点数  数量: <span id="numG3"></span>  倍率: <span id="facG3"></span>)
             </p>
             <p>
-                四阶生成器 <button id="buyG4" disabled=true onclick="buyGener(4)">购买</button>  (价格: <span id="priG4"></span>  数量: <span id="numG4"></span>  倍率: <span id="facG4"></span>)
+                四阶生成器 <button id="buyG4" disabled=true onclick="buyGener(4)">购买</button>  (价格: <span id="priG4"></span> 点数  数量: <span id="numG4"></span>  倍率: <span id="facG4"></span>)
             </p>
             <p>
-                五阶生成器 <button id="buyG5" disabled=true onclick="buyGener(5)">购买</button>  (价格: <span id="priG5"></span>  数量: <span id="numG5"></span>  倍率: <span id="facG5"></span>)
+                五阶生成器 <button id="buyG5" disabled=true onclick="buyGener(5)">购买</button>  (价格: <span id="priG5"></span> 点数  数量: <span id="numG5"></span>  倍率: <span id="facG5"></span>)
             </p>
             <p>
-                六阶生成器 <button id="buyG6" disabled=true onclick="buyGener(6)">购买</button>  (价格: <span id="priG6"></span>  数量: <span id="numG6"></span>  倍率: <span id="facG6"></span>)
+                六阶生成器 <button id="buyG6" disabled=true onclick="buyGener(6)">购买</button>  (价格: <span id="priG6"></span> 点数  数量: <span id="numG6"></span>  倍率: <span id="facG6"></span>)
             </p>
             <p>
-                七阶生成器 <button id="buyG7" disabled=true onclick="buyGener(7)">购买</button>  (价格: <span id="priG7"></span>  数量: <span id="numG7"></span>  倍率: <span id="facG7"></span>)
+                七阶生成器 <button id="buyG7" disabled=true onclick="buyGener(7)">购买</button>  (价格: <span id="priG7"></span> 点数  数量: <span id="numG7"></span>  倍率: <span id="facG7"></span>)
             </p>
             <p>
-                八阶生成器 <button id="buyG8" disabled=true onclick="buyGener(8)">购买</button>  (价格: <span id="priG8"></span>  数量: <span id="numG8"></span>  倍率: <span id="facG8"></span>)
+                八阶生成器 <button id="buyG8" disabled=true onclick="buyGener(8)">购买</button>  (价格: <span id="priG8"></span> 点数  数量: <span id="numG8"></span>  倍率: <span id="facG8"></span>)
+            </p>
+            <p>
+                当前加速效果: 使所有普通生成器效率 * 
+                <span id="SUFac">1</span>
+                 .
+            </p>
+            <p>
+                <button id="speedUp" disabled=true>加速</button> (重置一些东西并使乘数变为 <span id="SUNow">1</span>)
+            </p>
+            
+        </span>
+
+        <span id="IU">
+            <p id="IU1">
+                无限升级1 <button id="buyIU1" disabled=true onclick="buyIU(1)">购买</button> (价格: 1 无限点数  效果: 加速后保留 10 点数.)
+            </p>
+            <p id="IU2">
+                无限升级2 <button id="buyIU2" disabled=true onclick="buyIU(2)">购买</button> (价格: 1 无限点数  效果: 解锁自动购买一阶生成器.)
+            </p>
+            <p id="IU3">
+                无限升级3 <button id="buyIU3" disabled=true onclick="buyIU(3)">购买</button> (价格: 2 无限点数  效果: 解锁自动购买二阶生成器.)
+            </p>
+            <p id="IU4">
+                无限升级4 <button id="buyIU4" disabled=true onclick="buyIU(4)">购买</button> (价格: 3 无限点数  效果: 解锁自动购买三阶生成器.)
+            </p>
+            <p id="IU5">
+                无限升级5 <button id="buyIU5" disabled=true onclick="buyIU(5)">购买</button> (价格: 4 无限点数  效果: 解锁自动购买四阶生成器.)
+            </p>
+            <p id="IU6">
+                无限升级6 <button id="buyIU6" disabled=true onclick="buyIU(6)">购买</button> (价格: 5 无限点数  效果: 解锁自动购买五阶生成器.)
+            </p>
+            <p id="IU7">
+                无限升级7 <button id="buyIU7" disabled=true onclick="buyIU(7)">购买</button> (价格: 6 无限点数  效果: 解锁自动购买六阶生成器.)
+            </p>
+            <p id="IU8">
+                无限升级8 <button id="buyIU8" disabled=true onclick="buyIU(8)">购买</button> (价格: 7 无限点数  效果: 解锁自动购买七阶生成器.)
+            </p>
+            <p id="IU9">
+                无限升级9 <button id="buyIU9" disabled=true onclick="buyIU(9)">购买</button> (价格: 8 无限点数  效果: 解锁自动购买八阶生成器.)
+            </p>
+            <p id="IU10">
+                无限升级10 <button id="buyIU10" disabled=true onclick="buyIU(10)">购买</button> (价格: 10 无限点数  效果: 无限后保留 10 点数.)
             </p>
         </span>
+
         <span id="others">
             <button id="save">存档</button> <button id="load">读档</button> (每10秒自动保存)
             <br/>
             <br/>
             <p>
                 更新历程:<br/>
+                <span id="pre">
+                    <i>准备做的: vω.0 扩大数字的绝对值的范围到 10^(1.79*10^-308) ~ 10^((1.79*10^308)+1) (左闭右开区间)</i><br/>
+                </span>
+                2024.07.14 v5.2 更新了UI<br/>
+                2024.07.14 v5.1 把"<b>无限点数</b>提升普通生成器速度"改成"<b>无限次数</b>提升普通生成器速度"<br/>
+                2024.07.14 v5.0 增加了无限升级<br/>
+                2024.07.14 v4.4 更新了UI<br/>
+                2024.07.14 v4.3 修复了一些bug<br/>
+                2024.07.13 v4.2 更新了UI<br/>
+                2024.07.13 v4.1 增加了"无限点数提升普通生成器速度"<br/>
+                2024.07.13 v4.0 增加了加速<br/>
+                2024.07.13 v3.0 增加了无限点数<br/>
+                2024.07.13 v2.7 更新了UI<br/>
+                2024.07.13 v2.6 优化代码结构<br/>
+                2024.07.09 v2.5 小幅提升生成器速度<br/>
                 2024.07.08 v2.4 增加了自动保存<br/>
                 2024.07.08 v2.3 更新了UI<br/>
                 2024.07.08 v2.2 更新了UI<br/>

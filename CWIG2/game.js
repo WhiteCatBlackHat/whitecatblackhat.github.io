@@ -1,18 +1,32 @@
 window.onload = init;
 var game =
 {
-    number: [0,0,0,0,0,0,0,0,0],
-    factor: [1,1,1,1,1,1,1,1,1],
-    price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],
+    //整个游戏需要用到的大部分变量/常量
+    normal:
+    {
+        number: [0,0,0,0,0,0,0,0,0],
+        factor: [1,1,1,1,1,1,1,1,1],
+        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],
+        speedUpFac: 1
+    },
+    infinity:
+    {
+        number: [0,0,0,0,0,0,0,0,0],
+        factor: [1,1,1,1,1,1,1,1,1],
+        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],
+        upgrade: [0,0,0,0,0,0,0,0,0],
+        uPrice: [0,1,1,2,3,4,5,6,7,8,10],
+        times: 0
+    },
     msOfTick: 50,
     intervalId1: null,
     intervalId2: null
 };
-function init()
+function init() //初始化
 {
     loadGame();
     tick();
-    showGeners();
+    showNormalGeners();
     if(document.getElementById) //设置按钮按下后的行为
     {
         var bPlus1 = document.getElementById('plus1');
@@ -27,10 +41,14 @@ function init()
         bHR.onclick = hardReset;
         var bMA = document.getElementById('maxAll');
         bMA.onclick = maxAll;
-        var bSG = document.getElementById('showGeners');
-        bSG.onclick = showGeners;
+        var bSG = document.getElementById('showNormalGeners');
+        bSG.onclick = showNormalGeners;
         var bSO = document.getElementById('showOthers');
         bSO.onclick = showOthers;
+        var bSU = document.getElementById('speedUp');
+        bSU.onclick = speedUp;
+        var bSIU = document.getElementById('showIU');
+        bSIU.onclick = showIU;
     }
     game.intervalId1 = setInterval(tick, 50);
     game.intervalId2 = setInterval(saveGame, 10000);
