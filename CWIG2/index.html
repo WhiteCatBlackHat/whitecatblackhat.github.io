@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8">
-        <script type="text/javascript" src="game.js"></script>
         <script type="text/javascript" src="plus1.js"></script>
         <script type="text/javascript" src="saves.js"></script>
         <script type="text/javascript" src="exponential.js"></script>
@@ -14,6 +13,8 @@
         <script type="text/javascript" src="speed_up.js"></script>
         <link type="text/css" rel="stylesheet" href="styles.css">
         <script type="text/javascript" src="infinity_upgrades.js"></script>
+        <script type="text/javascript" src="bigNum_compare.js"></script>
+        <script type="text/javascript" src="game.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -23,6 +24,14 @@
             你有 
             <span id="points">0</span>
              点数.
+        </p>
+        <p>
+            到达 1.79e+308 点数可 
+            <button id="goToInf" disabled=true>进入无限</button>
+            <span id="getInfPTxt">
+                 (可获得<span id="getInfPNum">0</span>无限点数) 
+            </span>
+             .
         </p>
         <p>
             你有 
@@ -108,11 +117,16 @@
             <br/>
             <p>
                 更新历程:<br/>
+                <!--
                 <span id="pre">
-                    <i>准备做的: vω.0 扩大数字的绝对值的范围到 10^(1.79*10^-308) ~ 10^((1.79*10^308)+1) (左闭右开区间)</i><br/>
+                    <i>施工中: v6.0 扩大数字的范围</i><br/>
                 </span>
+                -->
+                2024.07.15 v6.2 修复了一些bug<br/>
+                2024.07.15 v6.1 取消了点数到达1.79e+308时自动进入无限<br/>
+                2024.07.15 v6.0 扩大数字的范围<br/>
                 2024.07.14 v5.2 更新了UI<br/>
-                2024.07.14 v5.1 把"<b>无限点数</b>提升普通生成器速度"改成"<b>无限次数</b>提升普通生成器速度"<br/>
+                2024.07.14 v5.1 把"<b>无限点数</b>提升普通生成器速度"改成"<b>无限次数</b>"<br/>
                 2024.07.14 v5.0 增加了无限升级<br/>
                 2024.07.14 v4.4 更新了UI<br/>
                 2024.07.14 v4.3 修复了一些bug<br/>

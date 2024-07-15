@@ -4,28 +4,38 @@ var game =
     //整个游戏需要用到的大部分变量/常量
     normal:
     {
-        number: [0,0,0,0,0,0,0,0,0],
-        factor: [1,1,1,1,1,1,1,1,1],
-        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],
-        speedUpFac: 1
+        number: [0,0,0,0,0,0,0,0,0],    //bigNum
+        factor: [1,1,1,1,1,1,1,1,1],    //bigNum
+        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
+        speedUpFac: 1    //bigNum
     },
     infinity:
     {
-        number: [0,0,0,0,0,0,0,0,0],
-        factor: [1,1,1,1,1,1,1,1,1],
-        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],
+        number: [0,0,0,0,0,0,0,0,0],    //bigNum
+        factor: [1,1,1,1,1,1,1,1,1],    //bigNum
+        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
         upgrade: [0,0,0,0,0,0,0,0,0],
-        uPrice: [0,1,1,2,3,4,5,6,7,8,10],
+        uPrice: [0,1,1,2,3,4,5,6,7,8,10],   //bigNum
         times: 0
     },
     msOfTick: 50,
     intervalId1: null,
-    intervalId2: null
+    intervalId2: null,
 };
+
+
+
+const zero = new bigNum(0,0);  //零
+const one = new bigNum(1,0);   //一
+const two = new bigNum(2,0);   //二
+const ten = new bigNum(1,1);   //十
+const tickInSec = new bigNum(5,-2);    //1tick是1秒的5*10^-2倍
+const inf1 = new bigNum(1.79769,308); //进入无限需要的普通点数
+
 function init() //初始化
 {
+    allToExp();
     loadGame();
-    tick();
     showNormalGeners();
     if(document.getElementById) //设置按钮按下后的行为
     {
@@ -49,6 +59,8 @@ function init() //初始化
         bSU.onclick = speedUp;
         var bSIU = document.getElementById('showIU');
         bSIU.onclick = showIU;
+        var bGTInf = document.getElementById('goToInf');
+        bGTInf.onclick = goToInfinity;
     }
     game.intervalId1 = setInterval(tick, 50);
     game.intervalId2 = setInterval(saveGame, 10000);
