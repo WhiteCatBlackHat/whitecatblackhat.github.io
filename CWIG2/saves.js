@@ -28,6 +28,8 @@ function saveGame() //存档
     {
         localStorage.setItem('IU'+i,game.infinity.upgrade[i]);
     }
+    localStorage.setItem('IEb'+i,game.infinity.energy.bas);
+    localStorage.setItem('IEe'+i,game.infinity.energy.exp);
 }
 function loadGame() //读档
 {
@@ -90,6 +92,13 @@ function loadGame() //读档
         game.infinity.upgrade[i] = parseFloat(localStorage.getItem('IU'+i));
         game.infinity.upgrade[i] = (game.infinity.upgrade[i] ? 1 : 0);
     }
+    //读取无限能量
+    game.infinity.energy.bas = parseFloat(localStorage.getItem('IEb'+i));
+    game.infinity.energy.exp = parseFloat(localStorage.getItem('IEe'+i));
+    if(isNan(game.infinity.energy))
+    {
+        game.infinity.energy = new bigNum(0,0);
+    }
     tick();
 }
 function resetNormal()
@@ -112,10 +121,11 @@ function resetInfinity()
         game.infinity.price[i] = new bigNum(1,i);
     }
     game.infinity.times = 0;
-    for(var i=1; i<=10; i++)    //读取无限升级
+    for(var i=1; i<=10; i++)
     {
         game.infinity.upgrade[i] = 0;
     }
+    game.infinity.energy = new bigNum(0,0);
     tick();
 }
 function softReset()    //软重置

@@ -1,4 +1,4 @@
-//*
+/*
 class bigNum {  
     constructor(basNum, expNum) {  
         this.bas = basNum;
@@ -6,7 +6,7 @@ class bigNum {
     }  
 }
 //*/
-/*
+//*
 function bigNum(basNum,expNum)  // basNum * 10^expNum
 {
     this.bas = basNum;
@@ -26,11 +26,15 @@ function numToExp(num)   //把数字转成科学计数法(返回object)
 }
 function expToStr(value)    //把科学计数法的数字转为string
 {
+    if(value.exp >= 1e5)
+    {
+        return ( (value.bas).toFixed(4) ) + 'e(' + ( value.exp > 0 ? '+' : '' ) + expToStr( numToExp(value.exp) ) + ')';
+    }
     if(value.exp < 5)
     {
         return (value.bas * Math.pow(10, value.exp)).toFixed(4 - value.exp);
     }
-    return '' + ((value.bas).toFixed(4)) + 'e' + (value.exp > 0 ? '+' : '') + value.exp;
+    return '' + ( (value.bas).toFixed(4) ) + 'e' + ( value.exp > 0 ? '+' : '' ) + value.exp;
 }
 function expToExp(num)    //把科学计数法的数字转为正规的科学计数法
 {
@@ -64,12 +68,20 @@ function exppToExp(basNum, expNum)    // 把 [ 底数和指数都是 [ 科学计
 }
 function add(val1, val2)    //加法
 {
+    if( Math.abs( val1.exp-val2.exp ) >= 308 )  //如果两数差距过大就别算了
+    {
+        return ( greater( abs(val1) , abs(val2) ) ? new bigNum( val1.bas , val1.exp ) : new bigNum( val2.bas , val2.exp ) );
+    }
     var ret = new bigNum( val1.bas + val2.bas * Math.pow( 10, val2.exp - val1.exp ) , val1.exp );
     ret = expToExp(ret);
     return ret;
 }
 function sub(val1, val2)    //减法
 {
+    if( Math.abs( val1.exp-val2.exp ) >= 308 )  //如果两数差距过大就别算了
+    {
+        return ( greater( abs(val1) , abs(val2) ) ? new bigNum( val1.bas , val1.exp ) : new bigNum( -1 * val2.bas , val2.exp ) );
+    }
     var ret = new bigNum( val1.bas - val2.bas * Math.pow( 10, val2.exp - val1.exp ) , val1.exp );
     ret = expToExp(ret);
     return ret;
@@ -108,6 +120,7 @@ function infinityToExp()    //把game.infinity下的一些东西转成科学计�
     {
         game.infinity.uPrice[i] = numToExp(game.infinity.uPrice[i]);
     }
+    game.infinity.energy = numToExp(game.infinity.energy);
 }
 function allToExp() //把所有要转成科学计数法的东西转成科学计数法
 {
@@ -172,4 +185,8 @@ function floor(value)
         return value;
     }
     return numToExp( Math.floor( expToNum( value ) ) );
+}
+function abs(value)
+{
+    return new bigNum( Math.abs(value.bas) , value.exp );
 }

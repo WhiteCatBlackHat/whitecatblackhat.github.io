@@ -2,14 +2,15 @@ function calInfPoint()
 {
     if(game.normal.number[0].bas)
     {
-        return floor( mul( pow( game.normal.number[0] , 1/512 ) , new bigNum(2.5,-1) ) );
+        var ex = 2; // ex 必须是小于 10 的自然数, 数值越小, 游戏越难
+        return floor( mul( pow( game.normal.number[0] , 1 / 1024 * Math.pow( 2 , ex ) ) , numToExp( Math.pow( 1 / 4 , ex ) ) ) );
     }
     return numToExp(0);
 }
 function goToInfinity()
 {
     //if(game.normal.number[0] == Infinity)
-    if( geq( game.normal.number[0] , inf1 ) )
+    if( geq( game.normal.number[0] , new bigNum(1.79769,308) ) )
     {
         /*
         game.infinity.number[0] += 1;
@@ -18,6 +19,7 @@ function goToInfinity()
         */
         game.infinity.number[0] = add( game.infinity.number[0] , calInfPoint() );
         resetNormal();
+        //game.infinity.energy = new bigNum(0,0);
         game.infinity.times += 1;
         game.normal.number[0] = (game.infinity.upgrade[10] ? (new bigNum(1,1)) : (new bigNum(0,0)));
     }

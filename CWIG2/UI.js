@@ -1,9 +1,9 @@
 function hideAll()  //隐藏全部
 {
-    var sGeners = document.getElementById('normalGeners');
-    sGeners.hidden = true;
-    var bSG = document.getElementById('showNormalGeners');
-    bSG.disabled = false;
+    var sNG = document.getElementById('normalGeners');
+    sNG.hidden = true;
+    var bSNG = document.getElementById('showNormalGeners');
+    bSNG.disabled = false;
     var sOthers = document.getElementById('others');
     sOthers.hidden = true;
     var bSO = document.getElementById('showOthers');
@@ -11,15 +11,31 @@ function hideAll()  //隐藏全部
     var sIU = document.getElementById('IU');
     sIU.hidden = true;
     var bSIU = document.getElementById('showIU');
-    bSIU.disabled = false;
+    bSIU.disabled = (game.infinity.times ? false : true);
+    var sIG = document.getElementById('infinityGeners');
+    sIG.hidden = true;
+    var bSIG = document.getElementById('showInfGeners');
+    bSIG.disabled = (
+        game.infinity.upgrade[1] && 
+        game.infinity.upgrade[2] && 
+        game.infinity.upgrade[3] && 
+        game.infinity.upgrade[4] && 
+        game.infinity.upgrade[5] && 
+        game.infinity.upgrade[6] && 
+        game.infinity.upgrade[7] && 
+        game.infinity.upgrade[8] && 
+        game.infinity.upgrade[9] && 
+        game.infinity.upgrade[10] 
+    ? false : true);
 }
 function showNormalGeners()   //显示普通生成器
 {
     hideAll();
-    var sGeners = document.getElementById('normalGeners');
-    sGeners.hidden = false;
-    var bSG = document.getElementById('showNormalGeners');
-    bSG.disabled = true;
+    var sNG = document.getElementById('normalGeners');
+    sNG.hidden = false;
+    var bSNG = document.getElementById('showNormalGeners');
+    bSNG.disabled = true;
+    game.showing = 'normalGeners';
 }
 function showOthers()   //显示杂项
 {
@@ -28,6 +44,7 @@ function showOthers()   //显示杂项
     sOthers.hidden = false;
     var bSO = document.getElementById('showOthers');
     bSO.disabled = true;
+    game.showing = 'others';
 }
 function showIU()   //显示无限升级
 {
@@ -36,4 +53,14 @@ function showIU()   //显示无限升级
     sIU.hidden = false;
     var bSIU = document.getElementById('showIU');
     bSIU.disabled = true;
+    game.showing = 'IU';
+}
+function showInfGeners()
+{
+    hideAll();
+    var sIG = document.getElementById('infinityGeners');
+    sIG.hidden = false;
+    var bSIG = document.getElementById('showInfGeners');
+    bSIG.disabled = true;
+    game.showing = 'infinityGeners';
 }
