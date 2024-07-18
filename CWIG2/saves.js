@@ -1,6 +1,6 @@
 function saveGame() //存档
 {
-    for(var i=0; i<=8; i++)
+    for(var i=0; i<=game.cntGeners; i++)
     {
         localStorage.setItem('NNb'+i,game.normal.number[i].bas);
         localStorage.setItem('NNe'+i,game.normal.number[i].exp);
@@ -13,7 +13,7 @@ function saveGame() //存档
     localStorage.setItem('SUFb',game.normal.speedUpFac.bas);
     localStorage.setItem('SUFe',game.normal.speedUpFac.exp);
     //console.log("We set speedUpFac");
-    for(var i=0; i<=8; i++)
+    for(var i=0; i<=game.cntGeners; i++)
     {
         localStorage.setItem('INb'+i,game.infinity.number[i].bas);
         localStorage.setItem('INe'+i,game.infinity.number[i].exp);
@@ -24,7 +24,7 @@ function saveGame() //存档
     }
     //console.log("We set IN, IF and IP");
     localStorage.setItem('IT',game.infinity.times);
-    for(var i=1; i<=10; i++)
+    for(var i=1; i<=game.infinity.cntIU; i++)
     {
         localStorage.setItem('IU'+i,game.infinity.upgrade[i]);
     }
@@ -33,7 +33,7 @@ function saveGame() //存档
 }
 function loadGame() //读档
 {
-    for(var i=0; i<=8; i++) //读取普通点数&生成器
+    for(var i=0; i<=game.cntGeners; i++) //读取普通点数&生成器
     {
         game.normal.number[i].bas = parseFloat(localStorage.getItem('NNb'+i));
         game.normal.number[i].exp = parseFloat(localStorage.getItem('NNe'+i));
@@ -61,7 +61,7 @@ function loadGame() //读档
     {
         game.normal.speedUpFac = new bigNum(1,0);
     }
-    for(var i=0; i<=8; i++) //读取无限点数
+    for(var i=0; i<=game.cntGeners; i++) //读取无限点数
     {
         game.infinity.number[i].bas = parseFloat(localStorage.getItem('INb'+i));
         game.infinity.number[i].exp = parseFloat(localStorage.getItem('INe'+i));
@@ -87,9 +87,9 @@ function loadGame() //读档
     {
         game.infinity.times = 0;
     }
-    for(var i=1; i<=10; i++)    //读取无限升级
+    for(var i=1; i<=game.infinity.cntIU; i++)    //读取无限升级
     {
-        game.infinity.upgrade[i] = parseFloat(localStorage.getItem('IU'+i));
+        game.infinity.upgrade[i] = parseInt(localStorage.getItem('IU'+i));
         game.infinity.upgrade[i] = (game.infinity.upgrade[i] ? 1 : 0);
     }
     //读取无限能量
@@ -103,7 +103,7 @@ function loadGame() //读档
 }
 function resetNormal()
 {
-    for(var i=0; i<=8; i++)
+    for(var i=0; i<=game.cntGeners; i++)
     {
         game.normal.number[i] = new bigNum(0,0);
         game.normal.factor[i] = new bigNum(1,0);
@@ -114,14 +114,14 @@ function resetNormal()
 }
 function resetInfinity()
 {
-    for(var i=0; i<=8; i++)
+    for(var i=0; i<=game.cntGeners; i++)
     {
         game.infinity.number[i] = new bigNum(0,0);
         game.infinity.factor[i] = new bigNum(1,0);
         game.infinity.price[i] = new bigNum(1,i);
     }
     game.infinity.times = 0;
-    for(var i=1; i<=10; i++)
+    for(var i=1; i<=game.cntIU; i++)
     {
         game.infinity.upgrade[i] = 0;
     }

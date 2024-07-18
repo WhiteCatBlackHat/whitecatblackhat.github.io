@@ -17,7 +17,7 @@ function buyNG(num)  //买普通生成器
 }
 function maxAllNG()   //全部最大
 {
-    for(var i=1; i<=8; i++)
+    for(var i=1; i<=game.cntGeners; i++)
     {
         //while(game.normal.number[0] >= game.normal.price[i])
         while( geq( game.normal.number[0] , game.normal.price[i] ) )
@@ -28,7 +28,7 @@ function maxAllNG()   //全部最大
 }
 function generateNG() //生成
 {
-    for(var i=1; i<=8; i++)
+    for(var i=1; i<=game.cntGeners; i++)
     {
         //game.normal.number[i-1] += game.msOfTick / 1000.0 * game.normal.number[i] * game.normal.factor[i] * NGFac(i);   //一大坨公式
         game.normal.number[i-1] = add( game.normal.number[i-1] , mul( new bigNum(5,-2) , mul( game.normal.number[i] , mul( game.normal.factor[i] , NGFac(i) ) ) ) );   //一巨坨公式

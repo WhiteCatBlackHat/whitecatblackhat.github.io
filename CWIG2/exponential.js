@@ -15,11 +15,20 @@ function bigNum(basNum,expNum)  // basNum * 10^expNum
 //*/
 function numToExp(num)   //把数字转成科学计数法(返回object)
 {
-    if(num)
+    if(typeof num == 'number')
     {
-        var newExp = Math.floor( Math.log10( num ) );
-        var ret = new bigNum( num / Math.pow(10, newExp) , newExp);
+        if(num)
+        {
+            var newExp = Math.floor( Math.log10( num ) );
+            var ret = new bigNum( num / Math.pow(10, newExp) , newExp);
+            return ret;
+        }
+        var ret = new bigNum(0,0);
         return ret;
+    }
+    if(typeof num == 'object')
+    {
+        return num;
     }
     var ret = new bigNum(0,0);
     return ret;
@@ -100,7 +109,7 @@ function div(val1, val2)    //除法
 }
 function normalToExp()  //把game.normal下的一些东西转成科学计数法
 {
-    for(var i = 0; i <= 8; i++)
+    for(var i = 0; i <= game.cntGeners; i++)
     {
         game.normal.number[i] = numToExp(game.normal.number[i]);
         game.normal.factor[i] = numToExp(game.normal.factor[i]);
@@ -110,13 +119,13 @@ function normalToExp()  //把game.normal下的一些东西转成科学计数法
 }
 function infinityToExp()    //把game.infinity下的一些东西转成科学计数法
 {
-    for(var i = 0; i <= 8; i++)
+    for(var i = 0; i <= game.cntGeners; i++)
     {
         game.infinity.number[i] = numToExp(game.infinity.number[i]);
         game.infinity.factor[i] = numToExp(game.infinity.factor[i]);
         game.infinity.price[i] = numToExp(game.infinity.price[i]);
     }
-    for(var i = 0; i <= 10; i++)
+    for(var i = 0; i <= game.infinity.cntIU; i++)
     {
         game.infinity.uPrice[i] = numToExp(game.infinity.uPrice[i]);
     }
@@ -145,7 +154,7 @@ function fixExp(value)  //修补NaN的情况
 }
 function fixNormal()
 {
-    for(var i = 0; i <= 8; i++)
+    for(var i = 0; i <= game.cntGeners; i++)
     {
         game.normal.number[i] = fixExp(game.normal.number[i]);
         game.normal.factor[i] = fixExp(game.normal.factor[i]);
@@ -155,7 +164,7 @@ function fixNormal()
 }
 function fixInfinity()
 {
-    for(var i = 0; i <= 8; i++)
+    for(var i = 0; i <= game.cntGeners; i++)
     {
         game.infinity.number[i] = fixExp(game.infinity.number[i]);
         game.infinity.factor[i] = fixExp(game.infinity.factor[i]);

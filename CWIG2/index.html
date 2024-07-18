@@ -16,6 +16,7 @@
         <script type="text/javascript" src="infinity_upgrades.js"></script>
         <script type="text/javascript" src="bigNum_compare.js"></script>
         <script type="text/javascript" src="infinity_generators.js"></script>
+        <script type="text/javascript" src="save_text.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -116,6 +117,15 @@
             <p>
                 购买第 1 ~ 10 个无限升级后, 将解锁无限生成器.
             </p>
+            <p id="IU11">
+                无限升级11 <button id="buyIU11" disabled=true onclick="buyIU(11)">购买</button> (价格: 5000 无限点数  效果: 加速效果^3.)
+            </p>
+            <p id="IU12">
+                无限升级12 <button id="buyIU12" disabled=true onclick="buyIU(12)">购买</button> (价格: 2e5 无限点数  效果: 无限能量提升加速效果.)
+            </p>
+            <p id="IU13">
+                无限升级13 <button id="buyIU13" disabled=true onclick="buyIU(13)">购买</button> (价格: 2e6 无限点数 (前置条件: 购买无限升级12)  效果: 加强无限升级12.)
+            </p>
         </span>
 
         <span id="infinityGeners">
@@ -164,16 +174,28 @@
                 <a href="https://whitecatblackhat.github.io/index.html">此处</a>
                 返回上级菜单.
             </p>
+            <br/>
             <button id="save">存档</button> <button id="load">读档</button> (每10秒自动保存)
+            <br/>
+            <br/>
+            <button id="outSaveText">以文本形式导出存档</button> <button id="inSaveText">以文本形式导入存档</button>
+            <br/>
+            <input type="text" name="saveText" id="saveText"/> (在这里导入导出文本存档)
             <br/>
             <br/>
             <p>
                 更新历程:<br/>
-                <!--
                 <span id="pre">
+                    <!--
                     <i>施工中: v6.0 扩大数字的范围</i><br/>
+                    <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
+                    -->
                 </span>
-                -->
+                2024.07.18 v8.4 修改了第12个无限升级并增加了第13个无限升级<br/>
+                2024.07.18 v8.3 修改了第12个无限升级<br/>
+                2024.07.18 v8.2 增加了第12个无限升级<br/>
+                2024.07.18 v8.1 增加了第11个无限升级<br/>
+                2024.07.18 v8.0 增加了以文本形式导入导出存档<br/>
                 2024.07.17 v7.3 更新了杂项中的内容<br/>
                 2024.07.16 v7.2 更改了无限点数计算公式<br/>
                 2024.07.16 v7.1 修复了一些bug<br/>

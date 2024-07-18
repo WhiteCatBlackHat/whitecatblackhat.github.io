@@ -56,7 +56,7 @@ function optIE()    //输出无限能量
 }
 function tick() //状态更新
 {
-    for(var i=1; i<=8; i++)
+    for(var i=1; i<=game.cntGeners; i++)
     {
         if(game.infinity.upgrade[i+1])
         {
@@ -68,7 +68,7 @@ function tick() //状态更新
     fixAll();
     optPoints();
     optInfP();
-    for(var i=1; i<=8; i++)
+    for(var i=1; i<=game.cntGeners; i++)
     {
         optNG(i);
         var bBuyG = document.getElementById('buyG' + i);
@@ -77,13 +77,17 @@ function tick() //状态更新
     optSU();
     var bSU = document.getElementById('speedUp');
     bSU.disabled = ( ( geq( game.normal.number[0] , new bigNum(1,1)) ) ? false : true );
-    for(var i=1; i<=10; i++)
+    for(var i=1; i<=game.infinity.cntIU; i++)
     {
         var bBuyIU = document.getElementById('buyIU' + i);
         bBuyIU.disabled = ( ( geq( game.infinity.number[0] , game.infinity.uPrice[i] ) ) ? ( game.infinity.upgrade[i] ? true : false ) : true );
+        if(i==13 && !game.infinity.upgrade[12])
+        {
+            bBuyIU.disabled = true;
+        }
         bBuyIU.textContent = (game.infinity.upgrade[i] ? '已购买' : '购买');
         var pIU = document.getElementById('IU' + i);
-        pIU.style = ( game.infinity.upgrade[i] ? 'color: #0F0;' : 'color: #F00;' );
+        pIU.style = ( game.infinity.upgrade[i] ? 'color: #0D0;' : 'color: #F00;' );
     }
     var bSIU = document.getElementById('showIU');
     bSIU.disabled = (game.infinity.times ? ( game.showing == 'IU' ? true : false ) : true);
@@ -100,7 +104,7 @@ function tick() //状态更新
         game.infinity.upgrade[9] && 
         game.infinity.upgrade[10] 
     ? ( game.showing == 'infinityGeners' ? true : false ) : true);
-    for(var i=1; i<=8; i++)
+    for(var i=1; i<=game.cntGeners; i++)
     {
         optIG(i);
         var bBuyIG = document.getElementById('buyIG' + i);

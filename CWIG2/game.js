@@ -14,8 +14,12 @@ var game =
         number: [0,0,0,0,0,0,0,0,0],    //bigNum
         factor: [1,1,1,1,1,1,1,1,1],    //bigNum
         price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
-        upgrade: [0,0,0,0,0,0,0,0,0],
-        uPrice: [0,1,1,2,3,4,5,6,7,8,10],   //bigNum
+        upgrade: [0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0
+        ],
+        uPrice: [0,1,1,2,3,4,5,6,7,8,10,5000,2e5,2e6],   //bigNum
+        cntIU: 13,
         times: 0,
         energy: 0   //bigNum
     },
@@ -23,6 +27,7 @@ var game =
     intervalId1: null,
     intervalId2: null,
     showing: 'normalGeners',
+    cntGeners: 8,
 };
 
 /*
@@ -67,6 +72,10 @@ function init() //初始化
         bSIG.onclick = showInfGeners;
         var bMAIG = document.getElementById('maxAllIG');
         bMAIG.onclick = maxAllIG;
+        var bOST = document.getElementById('outSaveText');
+        bOST.onclick = optSaveText;
+        var bIST = document.getElementById('inSaveText');
+        bIST.onclick = iptSaveText;
     }
     game.intervalId1 = setInterval(tick, 50);
     game.intervalId2 = setInterval(saveGame, 10000);
