@@ -12,7 +12,7 @@ function optNG(num)  //输出普通生成器
     var sFacG = document.getElementById('facG' + num);
     sFacG.textContent = expToStr( mul( game.normal.factor[num] , NGFac(num) ) );
     var sPriG = document.getElementById('priG' + num);
-    sPriG.textContent = expToStr(game.normal.price[num]);
+    sPriG.textContent = expToStr(NGPrice(num));
 }
 function optSU()    //输出加速效果
 {

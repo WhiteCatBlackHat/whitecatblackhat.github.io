@@ -17,6 +17,7 @@
         <script type="text/javascript" src="bigNum_compare.js"></script>
         <script type="text/javascript" src="infinity_generators.js"></script>
         <script type="text/javascript" src="save_text.js"></script>
+        <script type="text/javascript" src="consts.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -30,7 +31,7 @@
         <p>
             到达 1.79769e+308 点数可 
             <button id="goToInf" disabled=true>进入无限</button>
-            <span id="getInfPTxt">
+            <span id="getInfPText">
                  (可获得<span id="getInfPNum">0</span>无限点数) 
             </span>
              .
@@ -124,7 +125,10 @@
                 无限升级12 <button id="buyIU12" disabled=true onclick="buyIU(12)">购买</button> (价格: 2e5 无限点数  效果: 无限能量提升加速效果.)
             </p>
             <p id="IU13">
-                无限升级13 <button id="buyIU13" disabled=true onclick="buyIU(13)">购买</button> (价格: 2e6 无限点数 (前置条件: 购买无限升级12)  效果: 加强无限升级12.)
+                无限升级13 <button id="buyIU13" disabled=true onclick="buyIU(13)">购买</button> (价格: 2e6 无限点数 (前置条件: 购买无限升级12)  效果: 增强无限升级12.)
+            </p>
+            <p id="IU14">
+                无限升级14 <button id="buyIU14" disabled=true onclick="buyIU(14)">购买</button> (价格: 2e20 无限点数  效果: 点数降低普通生成器价格.)
             </p>
         </span>
 
@@ -191,6 +195,8 @@
                     <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
                     -->
                 </span>
+                2024.07.19 v8.6 修改了第13个无限升级(实际效果没有变化)<br/>
+                2024.07.19 v8.5 增加了第14个无限升级<br/>
                 2024.07.18 v8.4 修改了第12个无限升级并增加了第13个无限升级<br/>
                 2024.07.18 v8.3 修改了第12个无限升级<br/>
                 2024.07.18 v8.2 增加了第12个无限升级<br/>

@@ -76,3 +76,19 @@ function IGFac(num) //无限生成器效果
     }
     return mul( fac1 , max( new bigNum(1,0) , log10( add( game.infinity.number[num - 1] , new bigNum(1,0) ) ) ) );
 }
+function NPFac()    //点数对普通生成器价格的降幅
+{
+    if(!game.infinity.upgrade[14])
+    {
+        return one();
+    }
+    if(leq(game.normal.number[0],one()))
+    {
+        return one();
+    }
+    return max( new bigNum(1,-2) , numToExp(  -1 / 32 * log2( log10( game.normal.number[0] ) ) + 1 ) );
+}
+function NGPrice(num)   //普通生成器价格
+{
+    return mul( game.normal.price[num] , NPFac() );
+}

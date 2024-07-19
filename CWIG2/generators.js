@@ -1,7 +1,7 @@
 function buyNG(num)  //买普通生成器
 {
     //if(game.normal.number[0] >= game.normal.price[num])
-    if( geq( game.normal.number[0] , game.normal.price[num] ) )
+    if( geq( game.normal.number[0] , NGPrice(num) ) )
     {
         /*
         game.normal.number[0] -= game.normal.price[num];
@@ -9,7 +9,7 @@ function buyNG(num)  //买普通生成器
         game.normal.factor[num] *= 2;
         game.normal.price[num] *= Math.pow(10,num);
         */
-        game.normal.number[0] = sub( game.normal.number[0] , game.normal.price[num]);
+        game.normal.number[0] = sub( game.normal.number[0] , NGPrice(num) );
         game.normal.number[num] = add( game.normal.number[num] , new bigNum(1,0) );
         game.normal.factor[num] = mul( game.normal.factor[num] , new bigNum(2,0) );
         game.normal.price[num].exp += num;
@@ -20,7 +20,7 @@ function maxAllNG()   //全部最大
     for(var i=1; i<=game.cntGeners; i++)
     {
         //while(game.normal.number[0] >= game.normal.price[i])
-        while( geq( game.normal.number[0] , game.normal.price[i] ) )
+        while( geq( game.normal.number[0] , NGPrice(num) ) )
         {
             buyNG(i);
         }
@@ -37,7 +37,7 @@ function generateNG() //生成
 function autobuyNG(num)  //自动购买生成器
 {
     //while(game.normal.number[0] >= game.normal.price[num])
-    while( geq( game.normal.number[0] , game.normal.price[num] ) )
+    while( geq( game.normal.number[0] , NGPrice(num) ) )
     {
         buyNG(num);
     }

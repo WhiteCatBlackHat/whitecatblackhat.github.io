@@ -16,10 +16,13 @@ var game =
         price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
         upgrade: [0,
             0,0,0,0,0,0,0,0,0,0,
-            0,0,0
+            0,0,0,0
         ],
-        uPrice: [0,1,1,2,3,4,5,6,7,8,10,5000,2e5,2e6],   //bigNum
-        cntIU: 13,
+        uPrice: [0,
+            1,1,2,3,4,5,6,7,8,10,
+            5000,2e5,2e6,2e20
+        ],   //bigNum
+        cntIU: 14,
         times: 0,
         energy: 0   //bigNum
     },
