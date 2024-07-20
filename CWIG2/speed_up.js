@@ -3,7 +3,6 @@ function speedUp()
     if( geq( game.normal.number[0] , new bigNum(1,1) ) )
     {
         var newFac = SUFac();
-        game.infinity.number[0] = add( game.infinity.number[0] , calInfPoint() );
         var tmpABNG = [0,0,0,0,0,0,0,0,0];
         for(var i = 0; i <= game.cntGeners; i++)
         {

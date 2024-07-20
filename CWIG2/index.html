@@ -24,29 +24,35 @@
         </title>
     </head>
     <body>
-        <p>
-            你有 
-            <span id="points">0</span>
-             点数.
-        </p>
-        <p>
-            到达 1.79769e+308 点数可 
-            <button id="goToInf" disabled=true>进入无限</button>
-            <span id="getInfPText">
-                 (可获得<span id="getInfPNum">0</span>无限点数) 
-            </span>
-             .
-        </p>
-        <p>
-            你有 
-            <span id="infPoints">0</span>
-             无限点数.
-        </p>
-        <button id="showNormalGeners">普通生成器</button> 
-        <button id="showIU">无限升级</button> 
-        <button id="showAB">自动购买</button> 
-        <button id="showInfGeners">无限生成器</button> 
-        <button id="showOthers">杂项</button> 
+        <span id="top">
+            <p>
+                你有 
+                <span id="points">0</span>
+                点数.
+            </p>
+            <p>
+                到达 1.79769e+308 点数可 
+                <button id="goToInf" disabled=true>进入无限</button>
+                <span id="getInfPText">
+                    (可获得<span id="getInfPNum">0</span>无限点数) 
+                </span>
+                .
+            </p>
+            <p>
+                你有 
+                <span id="infPoints">0</span>
+                无限点数.
+            </p>
+        </span>
+
+        <span id="showings">
+            <button id="showNormalGeners">普通生成器</button> 
+            <button id="showIU">无限升级</button> 
+            <button id="showAB">自动购买</button> 
+            <button id="showInfGeners">无限生成器</button> 
+            <button id="showOthers">杂项</button> 
+        </span>
+        
         <br/>
         <br/>
         <span id="normalGeners">
@@ -232,6 +238,7 @@
                     <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
                     -->
                 </span>
+                2024.07.20 v9.2 修复了一些bug<br/>
                 2024.07.20 v9.1 修复了一些bug<br/>
                 2024.07.20 v9.0 增加了自动购买界面<br/>
                 2024.07.19 v8.6 修改了第13个无限升级(实际效果没有变化)<br/>
