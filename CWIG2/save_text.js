@@ -40,6 +40,10 @@ function optSaveText()  //以文本形式导出存档
     ret += game.infinity.times + ' ';
     ret += game.infinity.energy.bas.toFixed(4) + ' ';
     ret += game.infinity.energy.exp.toExponential(4) + ' ';
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        ret += game.normal.abNG[i] + ' ';
+    }
     var tST = document.getElementById('saveText');
     tST.value = ret;
 }
@@ -110,4 +114,8 @@ function iptSaveText()    //以文本形式导入存档
     game.infinity.times = getFloat(sST);
     game.infinity.energy.bas = getFloat(sST);
     game.infinity.energy.exp = getFloat(sST);
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.normal.abNG[i] = getInt(sST);
+    }
 }

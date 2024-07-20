@@ -27,6 +27,19 @@ function hideAll()  //隐藏全部
         game.infinity.upgrade[9] && 
         game.infinity.upgrade[10] 
     ? false : true);
+    var sAB = document.getElementById('autobuy');
+    sAB.hidden = true;
+    var bSAB = document.getElementById('showAB');
+    bSAB.disabled = (
+        game.infinity.upgrade[2] || 
+        game.infinity.upgrade[3] || 
+        game.infinity.upgrade[4] || 
+        game.infinity.upgrade[5] || 
+        game.infinity.upgrade[6] || 
+        game.infinity.upgrade[7] || 
+        game.infinity.upgrade[8] || 
+        game.infinity.upgrade[9] 
+    ? false : true);
 }
 function showNormalGeners()   //显示普通生成器
 {
@@ -55,7 +68,7 @@ function showIU()   //显示无限升级
     bSIU.disabled = true;
     game.showing = 'IU';
 }
-function showInfGeners()
+function showInfGeners()    //显示无限生成器
 {
     hideAll();
     var sIG = document.getElementById('infinityGeners');
@@ -63,4 +76,13 @@ function showInfGeners()
     var bSIG = document.getElementById('showInfGeners');
     bSIG.disabled = true;
     game.showing = 'infinityGeners';
+}
+function showAB()
+{
+    hideAll();
+    var sAB = document.getElementById('autobuy');
+    sAB.hidden = false;
+    var bSAB = document.getElementById('showAB');
+    bSAB.disabled = true;
+    game.showing = 'autobuy';
 }

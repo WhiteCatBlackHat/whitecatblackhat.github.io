@@ -1,5 +1,6 @@
 function saveGame() //存档
 {
+    //存普通点数/生成器
     for(var i=0; i<=game.cntGeners; i++)
     {
         localStorage.setItem('NNb'+i,game.normal.number[i].bas);
@@ -9,9 +10,11 @@ function saveGame() //存档
         localStorage.setItem('NPb'+i,game.normal.price[i].bas);
         localStorage.setItem('NPe'+i,game.normal.price[i].exp);
     }
+    //存加速效果
     //console.log("We set NN, NF, and NP");
     localStorage.setItem('SUFb',game.normal.speedUpFac.bas);
     localStorage.setItem('SUFe',game.normal.speedUpFac.exp);
+    //存无限点数/生成器
     //console.log("We set speedUpFac");
     for(var i=0; i<=game.cntGeners; i++)
     {
@@ -23,13 +26,21 @@ function saveGame() //存档
         localStorage.setItem('IPe'+i,game.infinity.price[i].exp);
     }
     //console.log("We set IN, IF and IP");
+    //存无限次数
     localStorage.setItem('IT',game.infinity.times);
+    //存无限升级
     for(var i=1; i<=game.infinity.cntIU; i++)
     {
         localStorage.setItem('IU'+i,game.infinity.upgrade[i]);
     }
+    //存无限能量
     localStorage.setItem('IEb'+i,game.infinity.energy.bas);
     localStorage.setItem('IEe'+i,game.infinity.energy.exp);
+    //存自动购买普通生成器
+    for(var i=0; i<=game.cntGeners; i++)
+    {
+        localStorage.setItem('ABNG'+i,game.normal.abNG[i]);
+    }
 }
 function loadGame() //读档
 {
@@ -99,6 +110,11 @@ function loadGame() //读档
     {
         game.infinity.energy = new bigNum(0,0);
     }
+    for(var i=0; i<=game.cntGeners; i++)    //存自动购买普通生成器
+    {
+        game.normal.abNG[i] = parseInt(localStorage.getItem('ABNG'+i));
+        game.normal.abNG[i] = (game.normal.abNG[i] ? 1 : 0);
+    }
     tick();
 }
 function resetNormal()
@@ -108,6 +124,7 @@ function resetNormal()
         game.normal.number[i] = new bigNum(0,0);
         game.normal.factor[i] = new bigNum(1,0);
         game.normal.price[i] = new bigNum(1,i);
+        game.normal.abNG[i] = 0;
     }
     game.normal.speedUpFac = new bigNum(1,0);
     tick();

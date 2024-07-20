@@ -18,7 +18,16 @@ function goToInfinity()
         game.normal.number[0] = (game.infinity.upgrade[10] ? 10 : 0);
         */
         game.infinity.number[0] = add( game.infinity.number[0] , calInfPoint() );
+        var tmpABNG = [0,0,0,0,0,0,0,0,0];
+        for(var i = 0; i <= game.cntGeners; i++)
+        {
+            tmpABNG[i] = game.normal.abNG[i];
+        }
         resetNormal();
+        for(var i = 0; i <= game.cntGeners; i++)
+        {
+            game.normal.abNG[i] = tmpABNG[i];
+        }
         //game.infinity.energy = new bigNum(0,0);
         game.infinity.times += 1;
         game.normal.number[0] = (game.infinity.upgrade[10] ? (new bigNum(1,1)) : (new bigNum(0,0)));

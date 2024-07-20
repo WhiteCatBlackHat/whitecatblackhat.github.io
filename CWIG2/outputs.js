@@ -56,27 +56,35 @@ function optIE()    //输出无限能量
 }
 function tick() //状态更新
 {
+    //这里堆了一坨屎山, 最好不要尝试重构, 会死得很惨, 加点注释就行了 (写于2024.07.20)
+    //生成器的自动购买
     for(var i=1; i<=game.cntGeners; i++)
     {
-        if(game.infinity.upgrade[i+1])
+        if(game.infinity.upgrade[i+1] && game.normal.abNG[i])
         {
             autobuyNG(i);
         }
     }
+    //生成器的生成
     generateNG();
     generateIG();
+    //处理NaN
     fixAll();
+    //输出点数和无限点数
     optPoints();
     optInfP();
+    //输出普通生成器
     for(var i=1; i<=game.cntGeners; i++)
     {
         optNG(i);
         var bBuyG = document.getElementById('buyG' + i);
         bBuyG.disabled = ( ( geq( game.normal.number[0] , game.normal.price[i] ) ) ? false : true );
     }
+    //输出加速
     optSU();
     var bSU = document.getElementById('speedUp');
     bSU.disabled = ( ( geq( game.normal.number[0] , new bigNum(1,1)) ) ? false : true );
+    //输出无限升级
     for(var i=1; i<=game.infinity.cntIU; i++)
     {
         var bBuyIU = document.getElementById('buyIU' + i);
@@ -91,6 +99,7 @@ function tick() //状态更新
     }
     var bSIU = document.getElementById('showIU');
     bSIU.disabled = (game.infinity.times ? ( game.showing == 'IU' ? true : false ) : true);
+    //输出无限生成器
     var bSIG = document.getElementById('showInfGeners');
     bSIG.disabled = (
         game.infinity.upgrade[1] && 
@@ -110,5 +119,27 @@ function tick() //状态更新
         var bBuyIG = document.getElementById('buyIG' + i);
         bBuyIG.disabled = ( ( geq( game.infinity.number[0] , game.infinity.price[i] ) ) ? false : true );
     }
+    //输出无限能量
     optIE();
+    //输出自动购买
+    var bSAB = document.getElementById('showAB');
+    bSAB.disabled = (
+        game.infinity.upgrade[2] || 
+        game.infinity.upgrade[3] || 
+        game.infinity.upgrade[4] || 
+        game.infinity.upgrade[5] || 
+        game.infinity.upgrade[6] || 
+        game.infinity.upgrade[7] || 
+        game.infinity.upgrade[8] || 
+        game.infinity.upgrade[9] 
+    ? ( game.showing == 'autobuy' ? true : false ) : true);
+    for(var i = 1; i <= game.cntGeners; i++)
+    {
+        var cABNG = document.getElementById('abNG' + i);
+        if(game.infinity.upgrade[i+1])
+        {
+            cABNG.disabled = ( game.infinity.upgrade[ i + 1 ] ? false : true );
+        }
+        cABNG.checked = game.normal.abNG[i];
+    }
 }

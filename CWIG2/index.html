@@ -18,6 +18,7 @@
         <script type="text/javascript" src="infinity_generators.js"></script>
         <script type="text/javascript" src="save_text.js"></script>
         <script type="text/javascript" src="consts.js"></script>
+        <script type="text/javascript" src="autobuy.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -43,6 +44,7 @@
         </p>
         <button id="showNormalGeners">普通生成器</button> 
         <button id="showIU">无限升级</button> 
+        <button id="showAB">自动购买</button> 
         <button id="showInfGeners">无限生成器</button> 
         <button id="showOthers">杂项</button> 
         <br/>
@@ -132,6 +134,41 @@
             </p>
         </span>
 
+        <span id="autobuy">
+            <p>
+                <input type="checkbox" id="abNG1" name="abNG1" disabled=true onchange="changeABNG(1)">
+                <label for="abNG1">自动购买一阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG2" name="abNG2" disabled=true onchange="changeABNG(2)">
+                <label for="abNG2">自动购买二阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG3" name="abNG3" disabled=true onchange="changeABNG(3)">
+                <label for="abNG3">自动购买三阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG4" name="abNG4" disabled=true onchange="changeABNG(4)">
+                <label for="abNG4">自动购买四阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG5" name="abNG5" disabled=true onchange="changeABNG(5)">
+                <label for="abNG5">自动购买五阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG6" name="abNG6" disabled=true onchange="changeABNG(6)">
+                <label for="abNG6">自动购买六阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG7" name="abNG7" disabled=true onchange="changeABNG(7)">
+                <label for="abNG7">自动购买七阶生成器</label>
+            </p>
+            <p>
+                <input type="checkbox" id="abNG8" name="abNG8" disabled=true onchange="changeABNG(8)">
+                <label for="abNG8">自动购买八阶生成器</label>
+            </p>
+        </span>
+
         <span id="infinityGeners">
             <p>
                 你现在有 
@@ -195,6 +232,8 @@
                     <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
                     -->
                 </span>
+                2024.07.20 v9.1 修复了一些bug<br/>
+                2024.07.20 v9.0 增加了自动购买界面<br/>
                 2024.07.19 v8.6 修改了第13个无限升级(实际效果没有变化)<br/>
                 2024.07.19 v8.5 增加了第14个无限升级<br/>
                 2024.07.18 v8.4 修改了第12个无限升级并增加了第13个无限升级<br/>
