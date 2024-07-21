@@ -5,7 +5,7 @@ function NGFac(num) //普通生成器效果
         //var nanFac = game.normal.speedUpFac * (game.infinity.times + 1);
         //var nanFac = mul( add( pow( game.infinity.energy , 1 / 2 ) , new bigNum(1,0) ) , mul( game.normal.speedUpFac , add( numToExp( game.infinity.times ) , new bigNum(1,0) ) ) );  //一巨坨公式
         
-        var nanFac = mul( add( pow( game.infinity.energy , 1 / 2 ) , new bigNum(1,0) ) , mul( game.normal.speedUpFac , mul( add( numToExp( game.infinity.times ) , new bigNum(1,0) ) , add( game.infinity.number[0] , new bigNum(1,0) ) ) ) );  //一巨坨公式
+        var nanFac = mul( add( IEFac() , new bigNum(1,0) ) , mul( game.normal.speedUpFac , mul( add( numToExp( game.infinity.times ) , new bigNum(1,0) ) , add( game.infinity.number[0] , new bigNum(1,0) ) ) ) );  //一巨坨公式
         
         //if(isNaN(game.normal.number[0]) || game.normal.number[0] < 1)
         if( isNan( game.normal.number[0] ) || less( game.normal.number[0] , new bigNum(1,0) ) )
@@ -46,6 +46,10 @@ function SUFac()    //加速效果
 }
 function IEFac()    //无限能量效果
 {
+    if(game.normal.playNC[2])
+    {
+        return zero();
+    }
     /*
     if( greater( game.infinity.energy , new bigNum(3.40282,38) ) )
     {
@@ -56,6 +60,10 @@ function IEFac()    //无限能量效果
         return pow( game.infinity.energy , 1 / 2 );
     }
     */
+    if(game.infinity.upgrade[15])
+    {
+        return game.infinity.energy;
+    }
     return pow( game.infinity.energy , 1 / 2 );
 }
 function IGFac(num) //无限生成器效果

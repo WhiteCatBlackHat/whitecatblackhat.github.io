@@ -19,6 +19,7 @@
         <script type="text/javascript" src="save_text.js"></script>
         <script type="text/javascript" src="consts.js"></script>
         <script type="text/javascript" src="autobuy.js"></script>
+        <script type="text/javascript" src="normal_challange.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -50,11 +51,13 @@
             <button id="showIU">无限升级</button> 
             <button id="showAB">自动购买</button> 
             <button id="showInfGeners">无限生成器</button> 
+            <button id="showNC">普通挑战</button> 
             <button id="showOthers">杂项</button> 
         </span>
         
         <br/>
         <br/>
+
         <span id="normalGeners">
             <button id="plus1">+1点数</button> <button id="maxAllNG">全部购买最大</button>
             <p>
@@ -133,10 +136,16 @@
                 无限升级12 <button id="buyIU12" disabled=true onclick="buyIU(12)">购买</button> (价格: 2e5 无限点数  效果: 无限能量提升加速效果.)
             </p>
             <p id="IU13">
-                无限升级13 <button id="buyIU13" disabled=true onclick="buyIU(13)">购买</button> (价格: 2e6 无限点数 (前置条件: 购买无限升级12)  效果: 增强无限升级12.)
+                无限升级13 <button id="buyIU13" disabled=true onclick="buyIU(13)">购买</button> (价格: 2e6 无限点数  前置条件: 购买无限升级12  效果: 增强无限升级12.)
             </p>
             <p id="IU14">
                 无限升级14 <button id="buyIU14" disabled=true onclick="buyIU(14)">购买</button> (价格: 2e20 无限点数  效果: 点数降低普通生成器价格.)
+            </p>
+            <p id="IU15">
+                无限升级15 <button id="buyIU15" disabled=true onclick="buyIU(15)">购买</button> (价格: 5e24 无限点数  效果: 增强无限能量对普通生成器的增益.)
+            </p>
+            <p>
+                购买第 11 ~ 15 个无限升级后, 将解锁普通挑战.
             </p>
         </span>
 
@@ -211,6 +220,15 @@
             
         </span>
 
+        <span id="NC">
+            <p id="NC1">
+                普通挑战1  <button id="setNC1" onclick="setNC(1)">开始</button> (禁用加速, 目标: 1e5432 点数)  奖励: 暂无.
+            </p>
+            <p id="NC2">
+                普通挑战2  <button id="setNC2" onclick="setNC(2)">开始</button> (无限能量对普通生成器的增益强制为 0 , 目标: 1e5678 点数)  奖励: 暂无.
+            </p>
+        </span>
+
         <span id="others">
             <p>
                 本游戏部分灵感来源于
@@ -236,8 +254,14 @@
                     <!--
                     <i>施工中: v6.0 扩大数字的范围</i><br/>
                     <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
+                    <i>施工中: v10.0 增加普通挑战</i><br/>
                     -->
                 </span>
+                2024.07.21 v10.3 修复了一些bug<br/>
+                2024.07.21 v10.2 修复了一些bug<br/>
+                2024.07.21 v10.1 修改了第13个无限升级(实际效果没有变化)<br/>
+                2024.07.21 v10.0 增加了普通挑战<br/>
+                2024.07.21 v9.3 增加了第15个无限升级<br/>
                 2024.07.20 v9.2 修复了一些bug<br/>
                 2024.07.20 v9.1 修复了一些bug<br/>
                 2024.07.20 v9.0 增加了自动购买界面<br/>

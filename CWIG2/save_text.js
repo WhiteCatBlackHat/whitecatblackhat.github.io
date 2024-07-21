@@ -44,6 +44,14 @@ function optSaveText()  //以文本形式导出存档
     {
         ret += game.normal.abNG[i] + ' ';
     }
+    for(var i = 0; i <= game.normal.cntNC; i++)
+    {
+        ret += game.normal.playNC[i] + ' ';
+    }
+    for(var i = 0; i <= game.normal.cntNC; i++)
+    {
+        ret += game.normal.doneNC[i] + ' ';
+    }
     var tST = document.getElementById('saveText');
     tST.value = ret;
 }
@@ -117,5 +125,13 @@ function iptSaveText()    //以文本形式导入存档
     for(var i = 0; i <= game.cntGeners; i++)
     {
         game.normal.abNG[i] = getInt(sST);
+    }
+    for(var i = 0; i <= game.normal.cntNC; i++)
+    {
+        game.normal.playNC[i] = getInt(sST);
+    }
+    for(var i = 0; i <= game.normal.cntNC; i++)
+    {
+        game.normal.doneNC[i] = getInt(sST);
     }
 }

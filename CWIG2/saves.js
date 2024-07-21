@@ -41,6 +41,12 @@ function saveGame() //存档
     {
         localStorage.setItem('ABNG'+i,game.normal.abNG[i]);
     }
+    //存普通挑战状态
+    for(var i=0; i<=game.normal.cntNC; i++)
+    {
+        localStorage.setItem('PNC'+i,game.normal.playNC[i]);
+        localStorage.setItem('DNC'+i,game.normal.doneNC[i]);
+    }
 }
 function loadGame() //读档
 {
@@ -110,10 +116,17 @@ function loadGame() //读档
     {
         game.infinity.energy = new bigNum(0,0);
     }
-    for(var i=0; i<=game.cntGeners; i++)    //存自动购买普通生成器
+    for(var i=0; i<=game.cntGeners; i++)    //读取自动购买普通生成器
     {
         game.normal.abNG[i] = parseInt(localStorage.getItem('ABNG'+i));
         game.normal.abNG[i] = (game.normal.abNG[i] ? 1 : 0);
+    }
+    for(var i=0; i<=game.normal.cntNC; i++) //读取普通挑战状态
+    {
+        game.normal.playNC[i] = parseInt(localStorage.getItem('PNC'+i));
+        game.normal.playNC[i] = (game.normal.playNC[i] ? 1 : 0);
+        game.normal.doneNC[i] = parseInt(localStorage.getItem('DNC'+i));
+        game.normal.doneNC[i] = (game.normal.doneNC[i] ? 1 : 0);
     }
     tick();
 }
@@ -124,9 +137,13 @@ function resetNormal()
         game.normal.number[i] = new bigNum(0,0);
         game.normal.factor[i] = new bigNum(1,0);
         game.normal.price[i] = new bigNum(1,i);
-        game.normal.abNG[i] = 0;
     }
     game.normal.speedUpFac = new bigNum(1,0);
+    for(var i=0; i<=game.normal.cntNC; i++)
+    {
+        game.normal.playNC[i] = 0;
+        game.normal.doneNC[i] = 0;
+    }
     tick();
 }
 function resetInfinity()

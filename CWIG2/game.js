@@ -1,50 +1,52 @@
 window.onload = init;
-var game =
-{
-    //整个游戏需要用到的大部分变量/常量
-    normal:
-    {
-        number: [0,0,0,0,0,0,0,0,0],    //bigNum
-        factor: [1,1,1,1,1,1,1,1,1],    //bigNum
-        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
-        speedUpFac: 1,  //bigNum
-        abNG: [0,0,0,0,0,0,0,0,0],
-    },
-    infinity:
-    {
-        number: [0,0,0,0,0,0,0,0,0],    //bigNum
-        factor: [1,1,1,1,1,1,1,1,1],    //bigNum
-        price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
-        upgrade: [0,
-            0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0
-        ],
-        uPrice: [0,
-            1,1,2,3,4,5,6,7,8,10,
-            5000,2e5,2e6,2e20
-        ],  //bigNum
-        cntIU: 14,
-        times: 0,
-        energy: 0,  //bigNum
-    },
-    msOfTick: 50,
-    intervalId1: null,
-    intervalId2: null,
-    showing: 'normalGeners',
-    cntGeners: 8,
-};
-
-/*
-const zero = new bigNum(0,0);  //零
-const one = new bigNum(1,0);   //一
-const two = new bigNum(2,0);   //二
-const ten = new bigNum(1,1);   //十
-const tickInSec = new bigNum(5,-2);    //1tick是1秒的5*10^-2倍
-const inf1 = new bigNum(1.79769,308); //进入无限需要的普通点数
-//*/
+var game;
 
 function init() //初始化
 {
+    game =
+    {
+        //整个游戏需要用到的大部分变量/常量
+        normal:
+        {
+            number: [0,0,0,0,0,0,0,0,0],    //bigNum
+            factor: [1,1,1,1,1,1,1,1,1],    //bigNum
+            price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
+            speedUpFac: 1,  //bigNum
+            abNG: [0,0,0,0,0,0,0,0,0],
+            playNC: [0,
+                0,0
+            ],
+            doneNC: [0,
+                0,0
+            ],
+            NCGoal: [zero(),
+                new bigNum(1,5432), new bigNum(1,5678)
+            ],  //bigNum
+            cntNC: 2,
+        },
+        infinity:
+        {
+            number: [0,0,0,0,0,0,0,0,0],    //bigNum
+            factor: [1,1,1,1,1,1,1,1,1],    //bigNum
+            price: [1e0,1e1,1e2,1e3,1e4,1e5,1e6,1e7,1e8],    //bigNum
+            upgrade: [0,
+                0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0
+            ],
+            uPrice: [0,
+                1,1,2,3,4,5,6,7,8,10,
+                5000,2e5,2e6,2e20,5e24
+            ],  //bigNum
+            cntIU: 15,
+            times: 0,
+            energy: 0,  //bigNum
+        },
+        msOfTick: 50,
+        intervalId1: null,
+        intervalId2: null,
+        showing: 'normalGeners',
+        cntGeners: 8,
+    };
     allToExp();
     loadGame();
     showNormalGeners();
@@ -82,6 +84,8 @@ function init() //初始化
         bIST.onclick = iptSaveText;
         var bSAB = document.getElementById('showAB');
         bSAB.onclick = showAB;
+        var bSNC = document.getElementById('showNC');
+        bSNC.onclick = showNC;
     }
     game.intervalId1 = setInterval(tick, 50);
     game.intervalId2 = setInterval(saveGame, 10000);

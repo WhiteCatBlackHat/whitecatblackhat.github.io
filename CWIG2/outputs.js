@@ -57,6 +57,7 @@ function optIE()    //输出无限能量
 function tick() //状态更新
 {
     //这里堆了一坨屎山, 最好不要尝试重构, 会死得很惨, 加点注释就行了 (写于2024.07.20)
+    
     //生成器的自动购买
     for(var i=1; i<=game.cntGeners; i++)
     {
@@ -83,7 +84,7 @@ function tick() //状态更新
     //输出加速
     optSU();
     var bSU = document.getElementById('speedUp');
-    bSU.disabled = ( ( geq( game.normal.number[0] , new bigNum(1,1)) ) ? false : true );
+    bSU.disabled = ( ( geq( game.normal.number[0] , new bigNum(1,1)) ) ? ( game.normal.playNC[1] ? true : false ) : true );
     //输出无限升级
     for(var i=1; i<=game.infinity.cntIU; i++)
     {
@@ -141,5 +142,21 @@ function tick() //状态更新
             cABNG.disabled = ( game.infinity.upgrade[ i + 1 ] ? false : true );
         }
         cABNG.checked = game.normal.abNG[i];
+    }
+    //输出普通挑战
+    var bSNC = document.getElementById('showNC');
+    bSNC.disabled = (
+        game.infinity.upgrade[11] && 
+        game.infinity.upgrade[12] && 
+        game.infinity.upgrade[13] && 
+        game.infinity.upgrade[14] && 
+        game.infinity.upgrade[15] 
+    ? ( game.showing == 'NC' ? true : false ) : true);
+    for(var i = 1; i <= game.normal.cntNC; i++)
+    {
+        var bSNC = document.getElementById('setNC' + i);
+        bSNC.textContent = ( game.normal.playNC[i] ? '退出' : '开始' );
+        var pNC = document.getElementById('NC' + i);
+        pNC.style = ( game.normal.doneNC[i] ? 'color: #0D0;' : 'color: #F00;' );
     }
 }

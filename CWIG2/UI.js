@@ -40,6 +40,16 @@ function hideAll()  //隐藏全部
         game.infinity.upgrade[8] || 
         game.infinity.upgrade[9] 
     ? false : true);
+    var sNC = document.getElementById('NC');
+    sNC.hidden = true;
+    var bSNC = document.getElementById('showNC');
+    bSNC.disabled = (
+        game.infinity.upgrade[11] && 
+        game.infinity.upgrade[12] && 
+        game.infinity.upgrade[13] && 
+        game.infinity.upgrade[14] && 
+        game.infinity.upgrade[15] 
+    ? false : true);
 }
 function showNormalGeners()   //显示普通生成器
 {
@@ -85,4 +95,13 @@ function showAB()
     var bSAB = document.getElementById('showAB');
     bSAB.disabled = true;
     game.showing = 'autobuy';
+}
+function showNC()   //显示无限升级
+{
+    hideAll();
+    var sNC = document.getElementById('NC');
+    sNC.hidden = false;
+    var bSNC = document.getElementById('showNC');
+    bSNC.disabled = true;
+    game.showing = 'NC';
 }
