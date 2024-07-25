@@ -11,7 +11,15 @@
             function updateClickCount()
             {
                 clickCount++;
-                document.getElementById('clickCount').textContent = 'You have clicked the button ' + clickCount + ' times.';
+                document.getElementById('clickCount').textContent = 'You have clicked the button ' + clickCount + ' time(s).';
+                if(clickCount == 114)
+                {
+                    alert('我是彩蛋: 哼哼啊啊啊啊');
+                }
+                else if(clickCount == 1145)
+                {
+                    alert('我是彩蛋: 哼哼哼啊啊啊啊啊啊');
+                }
             }
         </script>
     </head>
