@@ -5,7 +5,7 @@ function NGFac(num) //普通生成器效果
         //var nanFac = game.normal.speedUpFac * (game.infinity.times + 1);
         //var nanFac = mul( add( pow( game.infinity.energy , 1 / 2 ) , new bigNum(1,0) ) , mul( game.normal.speedUpFac , add( numToExp( game.infinity.times ) , new bigNum(1,0) ) ) );  //一巨坨公式
         
-        var nanFac = mul( add( IEFac() , new bigNum(1,0) ) , mul( game.normal.speedUpFac , mul( add( numToExp( game.infinity.times ) , new bigNum(1,0) ) , add( game.infinity.number[0] , new bigNum(1,0) ) ) ) );  //一巨坨公式
+        var nanFac = mul( add( IEFacNGF() , new bigNum(1,0) ) , mul( game.normal.speedUpFac , mul( add( numToExp( game.infinity.times ) , new bigNum(1,0) ) , add( game.infinity.number[0] , new bigNum(1,0) ) ) ) );  //一巨坨公式
         
         //if(isNaN(game.normal.number[0]) || game.normal.number[0] < 1)
         if( isNan( game.normal.number[0] ) || less( game.normal.number[0] , new bigNum(1,0) ) )
@@ -28,15 +28,13 @@ function SUFac()    //加速效果
 {
     //return Math.max( 1.0 , Math.log10( game.normal.number[0] + 1 ) );
     var ret = max( new bigNum(1,0) , log10( add( game.normal.number[0] , new bigNum(1,0) ) ) );
-    //*
-    if(game.infinity.upgrade[12] && !game.infinity.upgrade[13])
-    {
-        ret = mul( ret , log10(game.infinity.energy) );
-    }
-    //*/
     if(game.infinity.upgrade[11])
     {
         ret = pow( ret , 3 );
+    }
+    if(game.infinity.upgrade[12] && !game.infinity.upgrade[13])
+    {
+        ret = mul( ret , log10(game.infinity.energy) );
     }
     if(game.infinity.upgrade[13])
     {
@@ -44,7 +42,7 @@ function SUFac()    //加速效果
     }
     return ret;
 }
-function IEFac()    //无限能量效果
+function IEFacNGF()    //无限能量对普通生成器倍率的增幅
 {
     if(game.normal.playNC[2])
     {
@@ -65,6 +63,22 @@ function IEFac()    //无限能量效果
         return game.infinity.energy;
     }
     return pow( game.infinity.energy , 1 / 2 );
+}
+function IEFacIGP()    //无限能量对无限生成器价格的降幅
+{
+    if(!game.normal.doneNC[2])
+    {
+        return one();
+    }
+    if(leq(game.infinity.energy,one()))
+    {
+        return one();
+    }
+    return max( new bigNum(1,-2) , numToExp(  -1 / 16 * log2( log10( game.infinity.energy ) ) + 1 ) );
+}
+function IGPrice(num)   //无限生成器价格
+{
+    return mul( game.infinity.price[num] , IEFacIGP() );
 }
 function IGFac(num) //无限生成器效果
 {

@@ -45,14 +45,14 @@ function optIG(num)  //输出无限生成器
     var sFacIG = document.getElementById('facIG' + num);
     sFacIG.textContent = expToStr( mul( game.infinity.factor[num] , IGFac(num) ) );
     var sPriIG = document.getElementById('priIG' + num);
-    sPriIG.textContent = expToStr(game.infinity.price[num]);
+    sPriIG.textContent = expToStr( IGPrice(num) );
 }
 function optIE()    //输出无限能量
 {
     var sIGN = document.getElementById('infEnergyNum');
     sIGN.textContent = expToStr(game.infinity.energy);
     var sIGF = document.getElementById('infEnergyFac');
-    sIGF.textContent = expToStr( IEFac() );
+    sIGF.textContent = expToStr( IEFacNGF() );
 }
 function tick() //状态更新
 {
@@ -118,7 +118,7 @@ function tick() //状态更新
     {
         optIG(i);
         var bBuyIG = document.getElementById('buyIG' + i);
-        bBuyIG.disabled = ( ( geq( game.infinity.number[0] , game.infinity.price[i] ) ) ? false : true );
+        bBuyIG.disabled = ( ( geq( game.infinity.number[0] , IGPrice(i) ) ) ? false : true );
     }
     //输出无限能量
     optIE();

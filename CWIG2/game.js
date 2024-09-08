@@ -20,7 +20,7 @@ function init() //初始化
                 0,0
             ],
             NCGoal: [zero(),
-                new bigNum(1,5432), new bigNum(1,5678)
+                new bigNum(1,5300), new bigNum(1,5700)
             ],  //bigNum
             cntNC: 2,
         },

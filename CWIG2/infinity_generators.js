@@ -1,8 +1,8 @@
-function buyIG(num)  //无限生成器
+function buyIG(num)  //购买无限生成器
 {
-    if( geq( game.infinity.number[0] , game.infinity.price[num] ) )
+    if( geq( game.infinity.number[0] , IGPrice(num) ) )
     {
-        game.infinity.number[0] = sub( game.infinity.number[0] , game.infinity.price[num]);
+        game.infinity.number[0] = sub( game.infinity.number[0] , IGPrice(num) );
         game.infinity.number[num] = add( game.infinity.number[num] , new bigNum(1,0) );
         game.infinity.factor[num] = mul( game.infinity.factor[num] , new bigNum(2,0) );
         game.infinity.price[num].exp += num;
