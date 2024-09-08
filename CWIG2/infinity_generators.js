@@ -12,7 +12,7 @@ function maxAllIG()   //全部最大
 {
     for(var i=1; i<=game.cntGeners; i++)
     {
-        while( geq( game.infinity.number[0] , game.infinity.price[i] ) )
+        while( geq( game.infinity.number[0] , IGPrice(i) ) )
         {
             buyIG(i);
         }

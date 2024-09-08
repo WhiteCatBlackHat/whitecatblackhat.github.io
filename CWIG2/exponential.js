@@ -37,7 +37,7 @@ function expToStr(value)    //把科学计数法的数字转为string
 {
     if(value.exp >= 1e5)
     {
-        return ( (value.bas).toFixed(4) ) + 'e(' + ( value.exp > 0 ? '+' : '' ) + expToStr( numToExp(value.exp) ) + ')';
+        return 'e' + ( value.exp > 0 ? '+' : '' ) + expToStr( numToExp(value.exp) );
     }
     if(value.exp < 5)
     {

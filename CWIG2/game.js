@@ -14,15 +14,15 @@ function init() //初始化
             speedUpFac: 1,  //bigNum
             abNG: [0,0,0,0,0,0,0,0,0],
             playNC: [0,
-                0,0
+                0,0,0
             ],
             doneNC: [0,
-                0,0
+                0,0,0
             ],
             NCGoal: [zero(),
-                new bigNum(1,5300), new bigNum(1,5700)
+                new bigNum(1,5300), new bigNum(1,5700), new bigNum(1,2750)
             ],  //bigNum
-            cntNC: 2,
+            cntNC: 3,
         },
         infinity:
         {

@@ -79,7 +79,7 @@ function tick() //状态更新
     {
         optNG(i);
         var bBuyG = document.getElementById('buyG' + i);
-        bBuyG.disabled = ( ( geq( game.normal.number[0] , game.normal.price[i] ) ) ? false : true );
+        bBuyG.disabled = ( ( geq( game.normal.number[0] , NGPrice(i) ) ) ? false : true );
     }
     //输出加速
     optSU();

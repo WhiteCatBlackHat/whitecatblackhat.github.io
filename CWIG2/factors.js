@@ -112,5 +112,14 @@ function NPFac()    //点数对普通生成器价格的降幅
 }
 function NGPrice(num)   //普通生成器价格
 {
-    return mul( game.normal.price[num] , NPFac() );
+    var ret = mul( game.normal.price[num] , NPFac() );
+    if(game.normal.playNC[3])
+    {
+        ret = pow( ret , 2);
+    }
+    if(game.normal.doneNC[3])
+    {
+        ret = pow( ret , 0.9);
+    }
+    return ret;
 }

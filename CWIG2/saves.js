@@ -137,6 +137,7 @@ function resetNormal()
         game.normal.number[i] = new bigNum(0,0);
         game.normal.factor[i] = new bigNum(1,0);
         game.normal.price[i] = new bigNum(1,i);
+        game.normal.abNG[i] = 0;
     }
     game.normal.speedUpFac = new bigNum(1,0);
     for(var i=0; i<=game.normal.cntNC; i++)
@@ -155,7 +156,7 @@ function resetInfinity()
         game.infinity.price[i] = new bigNum(1,i);
     }
     game.infinity.times = 0;
-    for(var i=1; i<=game.cntIU; i++)
+    for(var i=1; i<=game.infinity.cntIU; i++)
     {
         game.infinity.upgrade[i] = 0;
     }
