@@ -34,11 +34,15 @@ function SUFac()    //加速效果
     }
     if(game.infinity.upgrade[12] && !game.infinity.upgrade[13])
     {
-        ret = mul( ret , log10(game.infinity.energy) );
+        ret = mul( ret , max( log10(game.infinity.energy), one() ) );
     }
     if(game.infinity.upgrade[13])
     {
-        ret = pow( ret , expToNum( mul( log10(game.infinity.energy) , new bigNum(1,-1) ) ) );
+        ret = pow( ret , expToNum( mul( max( log10(game.infinity.energy), one() ) , new bigNum(1,-1) ) ) );
+    }
+    if( greater( ret , new bigNum(1,300) ) )    //加速效果超过1e300时软上限启用
+    {
+        ret = mul( pow( ret , 0.1 ) , new bigNum(1,270) );
     }
     return ret;
 }
@@ -58,11 +62,12 @@ function IEFacNGF()    //无限能量对普通生成器倍率的增幅
         return pow( game.infinity.energy , 1 / 2 );
     }
     */
-    if(game.infinity.upgrade[15])
+    var ret = ( game.infinity.upgrade[15] ? game.infinity.energy : pow( game.infinity.energy , 1 / 2 ) );
+    if( greater( ret , new bigNum(1,300) ) )    //无限能量效果超过1e300时软上限启用
     {
-        return game.infinity.energy;
+        ret = mul( pow( ret , 0.1 ) , new bigNum(1,270) );
     }
-    return pow( game.infinity.energy , 1 / 2 );
+    return ret;
 }
 function IEFacIGP()    //无限能量对无限生成器价格的降幅
 {

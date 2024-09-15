@@ -87,6 +87,6 @@ function init() //初始化
         var bSNC = document.getElementById('showNC');
         bSNC.onclick = showNC;
     }
-    game.intervalId1 = setInterval(tick, 50);
+    game.intervalId1 = setInterval(tick, game.msOfTick);
     game.intervalId2 = setInterval(saveGame, 10000);
 }
