@@ -1,9 +1,15 @@
-function optPoints()    //输出点数
+function optPoints()    //输出各种(广义的)点数
 {
     var sNP = document.getElementById('points');
     sNP.textContent = expToStr(game.normal.number[0]);
     var sIP = document.getElementById('infPoints');
     sIP.textContent = expToStr(game.infinity.number[0]);
+    var sUQ = document.getElementById('upQuark');
+    sUQ.textContent = expToStr(game.uQuark.number[0]);
+    var sDQ = document.getElementById('downQuark');
+    sDQ.textContent = expToStr(game.dQuark.number[0]);
+    var sE = document.getElementById('electron');
+    sE.textContent = expToStr(game.electron.number[0]);
 }
 function optNG(num)  //输出普通生成器
 {
@@ -38,6 +44,21 @@ function optInfP()  //输出现在能获得的无限点数
     var sGIPN = document.getElementById('getInfPNum');
     sGIPN.textContent = expToStr( calInfPoint() );
 }
+function optQandE()  //输出现在能获得的夸克/电子
+{
+    var bGTUQ = document.getElementById('goToUQuark');
+    var bGTDQ = document.getElementById('goToDQuark');
+    var bGTE = document.getElementById('goToElectron');
+    var canGTQandE = ( geq( game.infinity.number[0] , new bigNum(1.79769,308)) ? false : true );
+    bGTUQ.disabled = canGTQandE;
+    bGTDQ.disabled = canGTQandE;
+    bGTE.disabled = canGTQandE;
+    var sGUQN = document.getElementById('getUQuarkNum');
+    var sGDQN = document.getElementById('getDQuarkNum');
+    var sGEN = document.getElementById('getElectronNum');
+    sGUQN.textContent = sGDQN.textContent = expToStr( calQuark() );
+    sGEN.textContent = expToStr( calElectron() );
+}
 function optIG(num)  //输出无限生成器
 {
     var sNumIG = document.getElementById('numIG' + num);
@@ -54,6 +75,7 @@ function optIE()    //输出无限能量
     var sIGF = document.getElementById('infEnergyFac');
     sIGF.textContent = expToStr( IEFacNGF() );
 }
+//----------------屎山开始----------------
 function tick() //状态更新
 {
     //这里堆了一坨屎山, 最好不要尝试重构, 会死得很惨, 加点注释就行了 (写于2024.07.20)
@@ -74,6 +96,7 @@ function tick() //状态更新
     //输出点数和无限点数
     optPoints();
     optInfP();
+    optQandE();
     //输出普通生成器
     for(var i=1; i<=game.cntGeners; i++)
     {

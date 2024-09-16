@@ -41,6 +41,21 @@ function init() //初始化
             times: 0,
             energy: 0,  //bigNum
         },
+        uQuark:
+        {
+            number: [0,0,0,0,0,0,0,0,0],    //bigNum
+            times: 0,
+        },
+        dQuark:
+        {
+            number: [0,0,0,0,0,0,0,0,0],    //bigNum
+            times: 0,
+        },
+        electron:
+        {
+            number: [0,0,0,0,0,0,0,0,0],    //bigNum
+            times: 0,
+        },
         msOfTick: 50,
         intervalId1: null,
         intervalId2: null,
@@ -86,6 +101,12 @@ function init() //初始化
         bSAB.onclick = showAB;
         var bSNC = document.getElementById('showNC');
         bSNC.onclick = showNC;
+        var bGTUQ = document.getElementById('goToUQuark');
+        bGTUQ.onclick = goToUQuark;
+        var bGTDQ = document.getElementById('goToDQuark');
+        bGTDQ.onclick = goToDQuark;
+        var bGTE = document.getElementById('goToElectron');
+        bGTE.onclick = goToElectron;
     }
     game.intervalId1 = setInterval(tick, game.msOfTick);
     game.intervalId2 = setInterval(saveGame, 10000);

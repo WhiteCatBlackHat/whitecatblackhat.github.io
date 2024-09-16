@@ -3,31 +3,37 @@ function NGFac(num) //普通生成器效果
     if( num <= 1 )
     {
         //var nanFac = game.normal.speedUpFac * (game.infinity.times + 1);
-        //var nanFac = mul( add( pow( game.infinity.energy , 1 / 2 ) , new bigNum(1,0) ) , mul( game.normal.speedUpFac , add( numToExp( game.infinity.times ) , new bigNum(1,0) ) ) );  //一巨坨公式
+        //var nanFac = mul( add( pow( game.infinity.energy , 1 / 2 ) , one() ) , mul( game.normal.speedUpFac , add( numToExp( game.infinity.times ) , one() ) ) );  //一巨坨公式
         
-        var nanFac = mul( add( IEFacNGF() , new bigNum(1,0) ) , mul( game.normal.speedUpFac , mul( add( numToExp( game.infinity.times ) , new bigNum(1,0) ) , add( game.infinity.number[0] , new bigNum(1,0) ) ) ) );  //一巨坨公式
+        var IE = add( IEFacNGF() , one() );
+        var SU = game.normal.speedUpFac;
+        var IT = add( numToExp( game.infinity.times ) , one() );
+        var IN0 = add( game.infinity.number[0] , one() );
+        var QandET = add( numToExp( game.uQuark.times + game.dQuark.times + game.electron.times ) , one() );
+        var QandEN = add( add( game.uQuark.number[0] , game.dQuark.number[0] ) , add( game.electron.number[0] , one() ) );
+        var nanFac = mul( IE , mul( SU , mul( IT , mul( IN0 , mul( QandET , QandEN ) ) ) ) );  //一大坨公式
         
         //if(isNaN(game.normal.number[0]) || game.normal.number[0] < 1)
-        if( isNan( game.normal.number[0] ) || less( game.normal.number[0] , new bigNum(1,0) ) )
+        if( isNan( game.normal.number[0] ) || less( game.normal.number[0] , one() ) )
         {
             return nanFac;
         }
         //return Math.max( 1.0 , Math.log10( game.normal.number[0] + 1 ) ) * nanFac;
-        return mul( max ( new bigNum(1,0) , log10( add( game.normal.number[0] , new bigNum(1,0) ) ) ) , nanFac );
+        return mul( max ( one() , log10( add( game.normal.number[0] , one() ) ) ) , nanFac );
     }
     var fac1 = NGFac(1);
     //if(isNaN(game.normal.number[num - 1]) || game.normal.number[num - 1] < 1)
-    if(isNan(game.normal.number[num - 1]) || less( game.normal.number[num - 1] , new bigNum(1,0) ) )
+    if(isNan(game.normal.number[num - 1]) || less( game.normal.number[num - 1] , one() ) )
     {
         return fac1;
     }
     //return fac1 * Math.max( 1.0 , Math.log10( game.normal.number[num - 1] + 1 ) );
-    return mul( fac1 , max( new bigNum(1,0) , log10( add( game.normal.number[num - 1] , new bigNum(1,0) ) ) ) );
+    return mul( fac1 , max( one() , log10( add( game.normal.number[num - 1] , one() ) ) ) );
 }
 function SUFac()    //加速效果
 {
     //return Math.max( 1.0 , Math.log10( game.normal.number[0] + 1 ) );
-    var ret = max( new bigNum(1,0) , log10( add( game.normal.number[0] , new bigNum(1,0) ) ) );
+    var ret = max( one() , log10( add( game.normal.number[0] , one() ) ) );
     if(game.infinity.upgrade[11])
     {
         ret = pow( ret , 3 );
@@ -89,19 +95,21 @@ function IGFac(num) //无限生成器效果
 {
     if( num <= 1 )
     {
-        var nanFac = new bigNum(1,0);
-        if(isNan(game.infinity.number[0]) || less(game.infinity.number[0] , new bigNum(1,0)))
+        var QandET = add( numToExp( game.uQuark.times + game.dQuark.times + game.electron.times ) , one() );
+        var QandEN = add( add( game.uQuark.number[0] , game.dQuark.number[0] ) , add( game.electron.number[0] , one() ) );
+        var nanFac = mul( QandET , QandEN );
+        if(isNan(game.infinity.number[0]) || less(game.infinity.number[0] , one()))
         {
             return nanFac;
         }
-        return mul( max ( new bigNum(1,0) , log10( add( game.infinity.number[0] , new bigNum(1,0) ) ) ) , nanFac );
+        return mul( max ( one() , log10( add( game.infinity.number[0] , one() ) ) ) , nanFac );
     }
     var fac1 = IGFac(1);
-    if(isNan(game.infinity.number[num - 1]) || less( game.infinity.number[num - 1] , new bigNum(1,0) ) )
+    if(isNan(game.infinity.number[num - 1]) || less( game.infinity.number[num - 1] , one() ) )
     {
         return fac1;
     }
-    return mul( fac1 , max( new bigNum(1,0) , log10( add( game.infinity.number[num - 1] , new bigNum(1,0) ) ) ) );
+    return mul( fac1 , max( one() , log10( add( game.infinity.number[num - 1] , one() ) ) ) );
 }
 function NPFac()    //点数对普通生成器价格的降幅
 {

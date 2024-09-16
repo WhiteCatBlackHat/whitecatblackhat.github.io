@@ -39,7 +39,7 @@ function expToStr(value)    //把科学计数法的数字转为string
     {
         return 'e' + ( value.exp > 0 ? '+' : '' ) + expToStr( numToExp(value.exp) );
     }
-    if(value.exp < 5)
+    if(Math.abs(value.exp) < 5)
     {
         return (value.bas * Math.pow(10, value.exp)).toFixed(4 - value.exp);
     }
@@ -131,10 +131,27 @@ function infinityToExp()    //把game.infinity下的一些东西转成科学计�
     }
     game.infinity.energy = numToExp(game.infinity.energy);
 }
+function quarkToExp()    //把game.uQuark和game.dQuark下的一些东西转成科学计数法
+{
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.uQuark.number[i] = numToExp(game.uQuark.number[i]);
+        game.dQuark.number[i] = numToExp(game.dQuark.number[i]);
+    }
+}
+function electronToExp()    //把game.electron下的一些东西转成科学计数法
+{
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.electron.number[i] = numToExp(game.electron.number[i]);
+    }
+}
 function allToExp() //把所有要转成科学计数法的东西转成科学计数法
 {
     normalToExp();
     infinityToExp();
+    quarkToExp();
+    electronToExp();
 }
 function log10(value)   //以10为底的对数
 {

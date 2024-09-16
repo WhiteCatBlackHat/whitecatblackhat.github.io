@@ -47,6 +47,24 @@ function saveGame() //存档
         localStorage.setItem('PNC'+i,game.normal.playNC[i]);
         localStorage.setItem('DNC'+i,game.normal.doneNC[i]);
     }
+    //存上夸克
+    for(var i=0; i<=game.cntGeners; i++)
+    {
+        localStorage.setItem('UQNb'+i,game.uQuark.number[i].bas);
+        localStorage.setItem('UQNe'+i,game.uQuark.number[i].exp);
+    }
+    //存下夸克
+    for(var i=0; i<=game.cntGeners; i++)
+    {
+        localStorage.setItem('DQNb'+i,game.dQuark.number[i].bas);
+        localStorage.setItem('DQNe'+i,game.dQuark.number[i].exp);
+    }
+    //存电子
+    for(var i=0; i<=game.cntGeners; i++)
+    {
+        localStorage.setItem('ENb'+i,game.electron.number[i].bas);
+        localStorage.setItem('ENe'+i,game.electron.number[i].exp);
+    }
 }
 function loadGame() //读档
 {
@@ -128,6 +146,33 @@ function loadGame() //读档
         game.normal.doneNC[i] = parseInt(localStorage.getItem('DNC'+i));
         game.normal.doneNC[i] = (game.normal.doneNC[i] ? 1 : 0);
     }
+    for(var i=0; i<=game.cntGeners; i++) //读取上夸克
+    {
+        game.uQuark.number[i].bas = parseFloat(localStorage.getItem('UQNb'+i));
+        game.uQuark.number[i].exp = parseFloat(localStorage.getItem('UQNe'+i));
+        if(isNan(game.uQuark.number[i]))
+        {
+            game.uQuark.number[i] = new bigNum(0,0);
+        }
+    }
+    for(var i=0; i<=game.cntGeners; i++) //读取下夸克
+    {
+        game.dQuark.number[i].bas = parseFloat(localStorage.getItem('DQNb'+i));
+        game.dQuark.number[i].exp = parseFloat(localStorage.getItem('DQNe'+i));
+        if(isNan(game.dQuark.number[i]))
+        {
+            game.dQuark.number[i] = new bigNum(0,0);
+        }
+    }
+    for(var i=0; i<=game.cntGeners; i++) //读取电子
+    {
+        game.electron.number[i].bas = parseFloat(localStorage.getItem('ENb'+i));
+        game.electron.number[i].exp = parseFloat(localStorage.getItem('ENe'+i));
+        if(isNan(game.electron.number[i]))
+        {
+            game.electron.number[i] = new bigNum(0,0);
+        }
+    }
     tick();
 }
 function resetNormal()
@@ -163,10 +208,30 @@ function resetInfinity()
     game.infinity.energy = new bigNum(0,0);
     tick();
 }
+function resetQuark()
+{
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.uQuark.number[i] = zero();
+        game.dQuark.number[i] = zero();
+    }
+    game.uQuark.times = 0;
+    game.dQuark.times = 0;
+}
+function resetElectron()
+{
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.electron.number[i] = zero();
+    }
+    game.electron.times = 0;
+}
 function softReset()    //软重置
 {
     resetNormal();
     resetInfinity();
+    resetQuark();
+    resetElectron();
 }
 function hardReset()    //硬重置
 {

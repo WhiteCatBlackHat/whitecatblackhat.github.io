@@ -52,6 +52,21 @@ function optSaveText()  //以文本形式导出存档
     {
         ret += game.normal.doneNC[i] + ' ';
     }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        ret += game.uQuark.number[i].bas.toFixed(4) + ' ';
+        ret += game.uQuark.number[i].exp.toExponential(4) + ' ';
+    }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        ret += game.dQuark.number[i].bas.toFixed(4) + ' ';
+        ret += game.dQuark.number[i].exp.toExponential(4) + ' ';
+    }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        ret += game.electron.number[i].bas.toFixed(4) + ' ';
+        ret += game.electron.number[i].exp.toExponential(4) + ' ';
+    }
     var tST = document.getElementById('saveText');
     tST.value = ret;
 }
@@ -84,9 +99,9 @@ function iptSaveText()    //以文本形式导入存档
     for(var i = 0; i <= game.cntGeners; i++)
     {
         game.normal.number[i].bas = getFloat(sST);
-        console.log( game.normal.number[i].bas + ' ' );
+        //console.log( game.normal.number[i].bas + ' ' );
         game.normal.number[i].exp = getFloat(sST);
-        console.log( game.normal.number[i].exp + ' ' );
+        //console.log( game.normal.number[i].exp + ' ' );
     }
     for(var i = 0; i <= game.cntGeners; i++)
     {
@@ -133,5 +148,20 @@ function iptSaveText()    //以文本形式导入存档
     for(var i = 0; i <= game.normal.cntNC; i++)
     {
         game.normal.doneNC[i] = getInt(sST);
+    }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.uQuark.number[i].bas = getFloat(sST);
+        game.uQuark.number[i].exp = getFloat(sST);
+    }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.dQuark.number[i].bas = getFloat(sST);
+        game.dQuark.number[i].exp = getFloat(sST);
+    }
+    for(var i = 0; i <= game.cntGeners; i++)
+    {
+        game.electron.number[i].bas = getFloat(sST);
+        game.electron.number[i].exp = getFloat(sST);
     }
 }

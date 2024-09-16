@@ -20,6 +20,7 @@
         <script type="text/javascript" src="consts.js"></script>
         <script type="text/javascript" src="autobuy.js"></script>
         <script type="text/javascript" src="normal_challange.js"></script>
+        <script type="text/javascript" src="quark_electron.js"></script>
         <title>
             CW的第2个增量游戏 (CWIG2)
         </title>
@@ -44,40 +45,40 @@
                 <span id="infPoints">0</span>
                 无限点数.
             </p>
+            <p>
+            到达 1.79769e+308 无限点数可 
+            <button id="goToUQuark" disabled=true>合成上夸克</button>
+            <span id="getUQuarkText">
+                (可获得<span id="getUQuarkNum">0</span>上夸克) 
+            </span>
+            或 
+            <button id="goToDQuark" disabled=true>合成下夸克</button>
+            <span id="getDQuarkText">
+                (可获得<span id="getDQuarkNum">0</span>下夸克) 
+            </span>
+            或 
+            <button id="goToElectron" disabled=true>合成电子</button>
+            <span id="getElectronText">
+                (可获得<span id="getElectronNum">0</span>电子) 
+            </span>
+            </p>
+            <p>
+                你有 
+                <span id="upQuark">0</span>
+                上夸克.
+            </p>
+            <p>
+                你有 
+                <span id="downQuark">0</span>
+                下夸克.
+            </p>
+            <p>
+                你有 
+                <span id="electron">0</span>
+                电子.
+            </p>
             <span id="pre">
                 <!--something here-->
-                <p>
-                施工中: 到达 1.79769e+308 无限点数可 
-                <button id="goToUQuark" disabled=true>合成上夸克</button>
-                <span id="getUQuarkText">
-                    (可获得<span id="getUQuarkNum">0</span>上夸克) 
-                </span>
-                或 
-                <button id="goToDQuark" disabled=true>合成下夸克</button>
-                <span id="getDQuarkText">
-                    (可获得<span id="getDQuarkNum">0</span>下夸克) 
-                </span>
-                或 
-                <button id="goToEletron" disabled=true>合成电子</button>
-                <span id="getEletronText">
-                    (可获得<span id="getEletronNum">0</span>电子) 
-                </span>
-                </p>
-                <p>
-                    你有 
-                    <span id="upQuark">0</span>
-                    上夸克.
-                </p>
-                <p>
-                    你有 
-                    <span id="downQuark">0</span>
-                    下夸克.
-                </p>
-                <p>
-                    你有 
-                    <span id="electron">0</span>
-                    电子.
-                </p>
             </span>
             
         </span>
@@ -300,9 +301,14 @@
                     <i>施工中: v6.0 扩大数字的范围</i><br/>
                     <i>施工中: v8.0 增加以文本形式导入导出存档</i><br/>
                     <i>施工中: v10.0 增加普通挑战</i><br/>
-                    -->
                     <i>施工中: v12.0 增加上/下夸克和电子</i><br/>
+                    -->
                 </span>
+                2024.09.16 v12.2 修改了数字小于等于1e-5时的显示格式<br/>
+                2024.09.16 v12.1 更改了普通/无限生成器倍率计算公式<br/>
+                2024.09.16 v12.0 增加了上/下夸克和电子<br/>
+                2024.09.16 v11.4 重构了部分代码<br/>
+                2024.09.16 v11.3 重构了部分代码<br/>
                 2024.09.10 v11.2 增加了一个软上限<br/>
                 2024.09.10 v11.1 修复了一些bug<br/>
                 2024.09.10 v11.0 增加了一个软上限<br/>
