@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>班级量化积分系统</title>
+    <style>
+        body {
+            background-color: #f2f2f2; /* 设置页面的背景颜色为浅灰色 */
+            font-family: Arial, sans-serif; /* 设置页面的文字字体为Arial，如果Arial不可用，则使用无衬线字体 */
+            font-size: 16px; /* 设置页面的文字大小为16像素 */
+            line-height: 1.5; /* 设置页面的文字行高为1.5倍字体大小，使文字更易读 */
+            display: flex; /* 使用Flexbox布局模型 */
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 垂直居中 */
+        }
+        .container {
+            margin: 10px; /* 设置容器的外边距 */
+            width: 80%; /* 设置容器的宽度 */
+            max-width: 800px; /* 设置容器的最大宽度 */
+            padding: 20px 25px 20px; /* 设置容器的内边距 */
+            background-color: #fff; /* 设置容器的背景颜色为白色 */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 设置容器的阴影效果 */
+            border-radius: 10px; /* 设置容器的圆角半径为10像素 */
+            transition: transform 0.3s; /* 设置transform属性的变化过渡时间为0.3秒 */
+        }
+        .container:hover {
+            transform: scale(1.02); /* 放大容器 */
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); /* 设置容器的阴影效果 */
+        }
+        .container h1 {
+            margin: auto auto 10px;
+        }
+        .container strong {
+            font-size: large;
+        }
+
+        /* 复选框样式 */
+        input[type="checkbox"] {
+            appearance: none; /* 去掉默认样式 */
+            -webkit-appearance: none; /* 去掉默认样式（兼容Safari） */
+            -moz-appearance: none; /* 去掉默认样式（兼容Firefox） */
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c4c4c4; /* 未选中时的边框颜色 */
+            border-radius: 4px; /* 圆角 */
+            background-color: #f2f2f2; /* 未选中时的背景颜色 */
+            position: relative;
+            cursor: pointer;
+            margin: auto;
+            transform: translateY(2px);
+        }
+        input[type="checkbox"]:checked {
+            background-color: #007bff; /* 选中时的背景颜色 */
+            border-color: #007bff; /* 选中时的边框颜色 */
+        }
+        input[type="checkbox"]:checked::after {
+            content: '✔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* 勾选符号颜色 */
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* number类型的input样式 */
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin-right: 10px;
+            border: 2px solid #c4c4c4;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* button样式 */
+        button {
+            padding: 5px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* file类型的input样式 */
+        input[type="file"] {
+            font-size: 16px;
+            background-color: #ffffff;
+            border: 2px solid #c4c4c4;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>班级量化积分系统</h1>
+        <p>
+            <strong>
+                注: 每次退出重进后积分将清零, 为防止数据丢失, 请及时保存数据.
+            </strong>
+        </p>
+        <div>
+            <p>
+                <label for="score">需加减的分数(正为加分, 负为减分): </label>
+                <input type="number" id="score" name="score">
+                <button onclick="addScore()">确定</button>
+            </p>
+            <p>
+                请选择对谁加/减分:
+                <button onclick="selectAll()">全选</button>
+                <button onclick="selectNone()">全不选</button>
+            </p>
+            <div>
+                <p><input type="checkbox" id="option1"> 1号　
+                    <input type="checkbox" id="option2"> 2号　
+                    <input type="checkbox" id="option3"> 3号　
+                    <input type="checkbox" id="option4"> 4号　
+                    <input type="checkbox" id="option5"> 5号　
+                    <input type="checkbox" id="option6"> 6号　
+                    <input type="checkbox" id="option7"> 7号　
+                    <input type="checkbox" id="option8"> 8号　
+                    <input type="checkbox" id="option9"> 9号　
+                    <input type="checkbox" id="option10"> 10号</p>
+                <p><input type="checkbox" id="option11"> 11号　
+                    <input type="checkbox" id="option12"> 12号　
+                    <input type="checkbox" id="option13"> 13号　
+                    <input type="checkbox" id="option14"> 14号　
+                    <input type="checkbox" id="option15"> 15号　
+                    <input type="checkbox" id="option16"> 16号　
+                    <input type="checkbox" id="option17"> 17号　
+                    <input type="checkbox" id="option18"> 18号　
+                    <input type="checkbox" id="option19"> 19号　
+                    <input type="checkbox" id="option20"> 20号</p>
+                <p><input type="checkbox" id="option21"> 21号　
+                    <input type="checkbox" id="option22"> 22号　
+                    <input type="checkbox" id="option23"> 23号　
+                    <input type="checkbox" id="option24"> 24号　
+                    <input type="checkbox" id="option25"> 25号　
+                    <input type="checkbox" id="option26"> 26号　
+                    <input type="checkbox" id="option27"> 27号　
+                    <input type="checkbox" id="option28"> 28号　
+                    <input type="checkbox" id="option29"> 29号　
+                    <input type="checkbox" id="option30"> 30号</p>
+                <p><input type="checkbox" id="option31"> 31号　
+                    <input type="checkbox" id="option32"> 32号　
+                    <input type="checkbox" id="option33"> 33号　
+                    <input type="checkbox" id="option34"> 34号　
+                    <input type="checkbox" id="option35"> 35号　
+                    <input type="checkbox" id="option36"> 36号　
+                    <input type="checkbox" id="option37"> 37号　
+                    <input type="checkbox" id="option38"> 38号　
+                    <input type="checkbox" id="option39"> 39号　
+                    <input type="checkbox" id="option40"> 40号</p>
+                <p><input type="checkbox" id="option41"> 41号　
+                    <input type="checkbox" id="option42"> 42号　
+                    <input type="checkbox" id="option43"> 43号　
+                    <input type="checkbox" id="option44"> 44号　
+                    <input type="checkbox" id="option45"> 45号　
+                    <input type="checkbox" id="option46"> 46号　
+                    <input type="checkbox" id="option47"> 47号　
+                    <input type="checkbox" id="option48"> 48号　
+                    <input type="checkbox" id="option49"> 49号　
+                    <input type="checkbox" id="option50"> 50号</p>
+                <p><input type="checkbox" id="option51"> 51号</p>
+            </div>            
+        </div>
+    </div>
+    <div class="container">
+        <h1>量化积分记录</h1>
+        <p>
+            <button onclick="downloadFile(encode())">导出记录</button>
+        </p>
+        <p>
+            <input type="file" id="file">
+            <button onclick="decode()">导入记录</button>
+        </p>
+        <div>
+            <p>1号: <span id="score1">0</span>分　　2号: <span id="score2">0</span>分　　3号: <span id="score3">0</span>分　　4号: <span id="score4">0</span>分　　5号: <span id="score5">0</span>分</p>
+            <p>6号: <span id="score6">0</span>分　　7号: <span id="score7">0</span>分　　8号: <span id="score8">0</span>分　　9号: <span id="score9">0</span>分　　10号: <span id="score10">0</span>分</p>
+            <p>11号: <span id="score11">0</span>分　　12号: <span id="score12">0</span>分　　13号: <span id="score13">0</span>分　　14号: <span id="score14">0</span>分　　15号: <span id="score15">0</span>分</p>
+            <p>16号: <span id="score16">0</span>分　　17号: <span id="score17">0</span>分　　18号: <span id="score18">0</span>分　　19号: <span id="score19">0</span>分　　20号: <span id="score20">0</span>分</p>
+            <p>21号: <span id="score21">0</span>分　　22号: <span id="score22">0</span>分　　23号: <span id="score23">0</span>分　　24号: <span id="score24">0</span>分　　25号: <span id="score25">0</span>分</p>
+            <p>26号: <span id="score26">0</span>分　　27号: <span id="score27">0</span>分　　28号: <span id="score28">0</span>分　　29号: <span id="score29">0</span>分　　30号: <span id="score30">0</span>分</p>
+            <p>31号: <span id="score31">0</span>分　　32号: <span id="score32">0</span>分　　33号: <span id="score33">0</span>分　　34号: <span id="score34">0</span>分　　35号: <span id="score35">0</span>分</p>
+            <p>36号: <span id="score36">0</span>分　　37号: <span id="score37">0</span>分　　38号: <span id="score38">0</span>分　　39号: <span id="score39">0</span>分　　40号: <span id="score40">0</span>分</p>
+            <p>41号: <span id="score41">0</span>分　　42号: <span id="score42">0</span>分　　43号: <span id="score43">0</span>分　　44号: <span id="score44">0</span>分　　45号: <span id="score45">0</span>分</p>
+            <p>46号: <span id="score46">0</span>分　　47号: <span id="score47">0</span>分　　48号: <span id="score48">0</span>分　　49号: <span id="score49">0</span>分　　50号: <span id="score50">0</span>分</p>
+            <p>51号: <span id="score51">0</span>分</p>
+        </div>
+    </div>
+
+    <script>
+        let scores = new Array(51).fill(0);
+
+        function formatDate() {
+            const date = new Date();
+
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1，并确保两位数
+            const day = String(date.getDate()).padStart(2, '0'); // 确保两位数
+            const hours = String(date.getHours()).padStart(2, '0'); // 确保两位数
+            const minutes = String(date.getMinutes()).padStart(2, '0'); // 确保两位数
+            const seconds = String(date.getSeconds()).padStart(2, '0'); // 确保两位数
+
+            return `${year}_${month}_${day} ${hours}_${minutes}_${seconds}`;
+        }
+
+        function downloadFile(content) {
+        
+            // 创建一个Blob对象，用于存储文本内容
+            const blob = new Blob([content], { type: 'text/plain' });
+        
+            // 创建一个指向Blob对象的URL
+            const url = URL.createObjectURL(blob);
+
+            // 创建一个标签用于下载
+            const temp = document.createElement('a');
+            temp.href = url;
+
+            // 设置下载的文件名
+            temp.download = '824量化积分记录 ' + formatDate() + '.txt';
+        
+            // 触发点击事件，开始下载
+            document.body.appendChild(temp);
+            temp.click();
+        
+            // 清理工作：移除标签，并释放Blob URL
+            document.body.removeChild(temp);
+            URL.revokeObjectURL(url);
+        }
+        
+        function refresh() {
+            for(let i = 1; i <= 51; i++) {
+                const scoreSpan = document.getElementById("score" + i);
+                scoreSpan.innerText = scores[i-1];
+            }
+        }
+
+        function addScore() {
+            const score = parseInt(document.getElementById("score").value);
+            if(!Number.isInteger(score) || score == 0) {
+                alert("请输入一个非零整数!");
+                return;
+            }
+            for(let i = 1; i <= 51; i++) {
+                const option = document.getElementById("option" + i);
+                if(option.checked) {
+                    scores[i-1] += score;
+                }
+            }
+            refresh();
+            // console.log(scores);
+        }
+
+        function encode() {
+            let str = "";
+            for(let i = 0; i < 51; i++) {
+                str += scores[i] + " ";
+            }
+            return btoa(str);
+        }
+
+        function decode() {
+            const file = document.getElementById("file").files[0];
+
+            if (!file) {
+                alert("请选择文件!");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                // 读取文件内容
+                const content = event.target.result;
+
+                // 将文件内容按行分割
+                const lines = content.split('\n');
+
+                // 读取第一行字符串并解码
+                const str = atob(lines[0]);
+                // console.log(str);
+
+                // 将字符串按空格分割，并转换为数组
+                const arr = str.split(' ').map(Number);
+                // console.log(arr);
+
+                // 更新数组和页面
+                for(let i = 0; i < 51; i++) {
+                    const scoreSpan = document.getElementById("score" + (i+1));
+                    scores[i] = arr[i];
+                    scoreSpan.innerText = arr[i];
+                }
+            };
+
+            reader.onerror = function(event) {
+                console.error("文件读取错误: ", event.target.error);
+            };
+
+            // 读取文件内容为文本
+            reader.readAsText(file);
+        }
+
+        function selectAll() {
+            for(let i = 1; i <= 51; i++) {
+                const option = document.getElementById("option" + i);
+                option.checked = true;
+            }
+        }
+
+        function selectNone() {
+            for(let i = 1; i <= 51; i++) {
+                const option = document.getElementById("option" + i);
+                option.checked = false;
+            }
+        }
+    </script>
+</body>
+</html>
