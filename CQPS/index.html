@@ -210,7 +210,9 @@
     </div>
 
     <script>
-        let scores = new Array(51).fill(0);
+        const students = 51;    // 学生数量
+
+        let scores = new Array(students).fill(0);
 
         function formatDate() {
             const date = new Date();
@@ -238,7 +240,7 @@
             temp.href = url;
 
             // 设置下载的文件名
-            temp.download = '824量化积分记录 ' + formatDate() + '.txt';
+            temp.download = '班级量化积分记录 ' + formatDate() + '.txt';
         
             // 触发点击事件，开始下载
             document.body.appendChild(temp);
@@ -250,7 +252,7 @@
         }
         
         function refresh() {
-            for(let i = 1; i <= 51; i++) {
+            for(let i = 1; i <= students; i++) {
                 const scoreSpan = document.getElementById("score" + i);
                 scoreSpan.innerText = scores[i-1];
             }
@@ -262,7 +264,7 @@
                 alert("请输入一个非零整数!");
                 return;
             }
-            for(let i = 1; i <= 51; i++) {
+            for(let i = 1; i <= students; i++) {
                 const option = document.getElementById("option" + i);
                 if(option.checked) {
                     scores[i-1] += score;
@@ -274,7 +276,7 @@
 
         function encode() {
             let str = "";
-            for(let i = 0; i < 51; i++) {
+            for(let i = 0; i < students; i++) {
                 str += scores[i] + " ";
             }
             return btoa(str);
@@ -306,7 +308,7 @@
                 // console.log(arr);
 
                 // 更新数组和页面
-                for(let i = 0; i < 51; i++) {
+                for(let i = 0; i < students; i++) {
                     const scoreSpan = document.getElementById("score" + (i+1));
                     scores[i] = arr[i];
                     scoreSpan.innerText = arr[i];
@@ -322,14 +324,14 @@
         }
 
         function selectAll() {
-            for(let i = 1; i <= 51; i++) {
+            for(let i = 1; i <= students; i++) {
                 const option = document.getElementById("option" + i);
                 option.checked = true;
             }
         }
 
         function selectNone() {
-            for(let i = 1; i <= 51; i++) {
+            for(let i = 1; i <= students; i++) {
                 const option = document.getElementById("option" + i);
                 option.checked = false;
             }
